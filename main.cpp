@@ -33,14 +33,14 @@ int main()
 		std::cout << *it << std::endl;
 	}*/
 
-	ft::List<int> list;
+	//ft::List<int> list;
 
 	/*
 	** --------------- MODIFIERS ----------------
 	*/
 
-	for (int i = 1; i <= 5; i++)
-		list.push_back(i);
+	/*for (int i = 1; i <= 5; i++)
+		list.push_back(i);*/
 
 	/*
 	** --------------- ITERATORS ----------------
@@ -129,16 +129,12 @@ int main()
 	it = list.begin();
 	it++;
 
-	list.insert(it, (std::size_t)4, 20);
 
-	it = list.begin();
+	ft::List<int>::iterator it = list.begin();
+	it++;
+	list.insert(it, 4, 20);
 
-	for (it = list.begin() ; it != list.end(); it++)
-	{
-		std::cout << *it << " ";
-	}
-
-	std::cout << std::endl;
+	printList(list);
 
 	it = list.begin();
 	it++;
@@ -177,7 +173,7 @@ int main()
 		std::cout << *it << " ";
 	}
 
-	std::cout << std::endl;*/
+	std::cout << std::endl;
 
 	ft::List<int> list2;
 
@@ -190,7 +186,46 @@ int main()
 	list.swap(list2);
 
 	printList(list);
+	printList(list2);*/
+
+	/*
+	** -------------- CONSTRUCTORS ---------------
+	*/
+
+	/*ft::List<int> list(8, 42);
+
+	printList(list);
+
+	std::vector<int> vector;
+
+	for (int i = 1; i <= 5; i++)
+		vector.push_back(i*10);
+
+	ft::List<int> list2(vector.begin(), vector.end());
+
+	printList(list2);*/
+
+	/*
+	** -------------- OPERATIONS ---------------
+	*/
+
+	ft::List<int> list1, list2;
+
+	for (int i = 1; i < 5; i++)
+		list1.push_back(i);
+
+	for (int i = 1; i <= 3; i++)
+		list2.push_back(i*10);
+
+	ft::List<int>::iterator it = list1.begin();
+	it++;
+
+	list1.splice(it, list2);
+
+	printList(list1);
 	printList(list2);
+
+	std::cout << *it << std::endl;
 
 	return 0;
 }

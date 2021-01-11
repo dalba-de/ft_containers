@@ -36,7 +36,7 @@ namespace ft
 */
 		public:
 
-			List()
+			explicit List(const allocator_type& = allocator_type())
 			{
 				size_ = 0;
 				head = new link<T>;
@@ -53,10 +53,30 @@ namespace ft
 				this->assign(src.begin(), src.end());
 			}
 
-			List(size_type n, const value_type& val = value_type())
+			explicit List(size_type n, const value_type& val = value_type(), const allocator_type& = allocator_type())
 			{
-				(void)n;
-				(void)val;
+				size_ = 0;
+				head = new link<T>;
+				tail = new link<T>;
+				head->next = tail;
+				tail->prev = head;
+				assign(n, val);
+			}
+
+			template<class InputIterator>
+			List(InputIterator first, InputIterator last,
+			typename std::enable_if<!std::is_integral<InputIterator>::value>::type * = 0)
+			{
+				size_ = 0;
+				head = new link<T>;
+				tail = new link<T>;
+				head->next = tail;
+				tail->prev = head;
+				while (first != last)
+				{
+					push_back(*(first));
+					first++;
+				}
 			}
 
 /*
@@ -184,7 +204,8 @@ namespace ft
 			}
 
 			template <class InputIterator>
-			void		insert(iterator position, InputIterator first, InputIterator last)
+			void		insert(iterator position, InputIterator first, InputIterator last, 
+						typename std::enable_if<!std::is_integral<InputIterator>::value>::type * = 0)
 			{
 				while (first != last)
 				{
@@ -252,6 +273,23 @@ namespace ft
 				while (empty())
 					pop_front();
 			}
+
+/*
+** --------------------------------- OPERATIONS ---------------------------------
+*/
+
+			void		splice(iterator position, List& x)
+			{
+				iterator it = x.begin();
+
+				while (it != x.end())
+				{
+					this->insert(position, *(it));
+					it++;
+				}
+				x.clear();
+			}
+
 	};
 
 }

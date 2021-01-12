@@ -290,6 +290,70 @@ namespace ft
 				x.clear();
 			}
 
+			void		splice(iterator position, List& x, iterator i)
+			{
+				this->insert(position, *(i));
+				x.erase(i);
+			}
+
+			void		splice(iterator position, List& x, iterator first, iterator last)
+			{
+				iterator ret = first;
+
+				while (ret != last)
+				{
+					this->insert(position, *(ret));
+					ret++;
+				}
+				x.erase(first, last);
+			}
+
+			void		remove(const value_type& val)
+			{
+				iterator it = this->begin();
+
+				while (it != this->end())
+				{
+					if (*it == val)
+						this->erase(it);
+					it++;
+				}
+			}
+
+			template<class Predicate>
+			void		remove_if (Predicate pred)
+			{
+				iterator it = this->begin();
+
+				while (it != this->end())
+				{
+					if (pred(*(it)))
+						this->erase(it);
+					it++;
+				}
+			}
+
+			void		unique()
+			{
+				iterator it = this->begin();
+				iterator next = it;
+
+				while (it != this->end())
+				{
+					next++;
+					if (next == this->end())
+						return ;
+					if (*(it) == *(next))
+					{
+						erase(next);
+						next = it;
+						continue ;
+					}
+					it++;
+					next = it;
+				}
+			}
+
 	};
 
 }

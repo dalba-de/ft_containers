@@ -4,9 +4,19 @@
 #include "List.hpp"
 #include <vector>
 
-void	printList(ft::List<int> list)
+// a predicate implemented as a function:
+bool single_digit (const int& value) 
+{ return (value<10); }
+
+// a predicate implemented as a class:
+struct is_odd {
+bool operator() (const int& value) { return (value%2)==1; }
+};
+
+template <class T>
+void	printList(ft::List<T> list)
 {
-	ft::List<int>::iterator it;
+	typename ft::List<T>::iterator it;
 
 	it = list.begin();
 	for (it = list.begin() ; it != list.end(); it++)
@@ -209,7 +219,8 @@ int main()
 	** -------------- OPERATIONS ---------------
 	*/
 
-	ft::List<int> list1, list2;
+	//SPLICE
+	/*ft::List<int> list1, list2;
 
 	for (int i = 1; i < 5; i++)
 		list1.push_back(i);
@@ -225,7 +236,47 @@ int main()
 	printList(list1);
 	printList(list2);
 
-	std::cout << *it << std::endl;
+	list2.splice(list2.begin(), list1, it);
+
+	printList(list1);
+	printList(list2);
+
+	it = list1.begin();
+
+	while (*it != 30)
+		it++;
+	
+	list1.splice(list1.begin(), list1, it, list1.end());
+
+	printList(list1);
+	printList(list2);*/
+
+	//REMOVE
+	/*int myints[]= {17,89,7,14};
+	ft::List<int> list (myints, myints + 4);
+
+	list.remove(89);
+
+	printList(list);*/
+
+	//REMOVE IF	
+	/*int myints[]= {15,36,7,17,20,39,4,1};
+	ft::List<int> list (myints,myints+8);   // 15 36 7 17 20 39 4 1
+
+	list.remove_if (single_digit);           // 15 36 17 20 39
+
+	list.remove_if (is_odd());               // 36 20
+
+	printList(list);*/
+
+	//UNIQUE
+	double mydoubles[]={ 2.72,  3.14, 12.15, 12.77, 12.77, 12.77,
+                		15.3,  72.25, 72.25, 73.0,  73.35 };
+  	ft::List<double> list (mydoubles,mydoubles+11);
+
+	list.unique();
+
+	printList(list);
 
 	return 0;
 }

@@ -354,6 +354,133 @@ namespace ft
 				}
 			}
 
+			template<class BinaryPredicate>
+			void		unique(BinaryPredicate binary_pred)
+			{
+				iterator it = this->begin();
+				iterator next = it;
+
+				while (it != this->end())
+				{
+					next++;
+					if (next == this->end())
+						return ;
+					if (binary_pred(*(it), *(next)))
+					{
+						erase(next);
+						next = it;
+						continue ;
+					}
+					it++;
+					next = it;
+				}
+			}
+
+			void		merge(List& x)
+			{
+				iterator it = x.begin();
+				iterator first = this->begin();
+
+				if (&x == this)
+					return ;
+				while (first != this->end() && it != x.end())
+				{
+					if (*(it) < *(first))
+					{
+						insert(first, *(it));
+						it++;
+					}
+					else	
+						first++;						
+				}
+				if (it != x.end())
+				{
+					while (it != x.end())
+					{
+						this->push_back(*(it));
+						it++;
+					}
+				}
+				x.clear();
+			}
+
+			template<class Compare>
+			void		merge(List& x, Compare comp)
+			{
+				iterator it = x.begin();
+				iterator first = this->begin();
+
+				if (&x == this)
+					return ;
+				while (first != this->end() && it != x.end())
+				{
+					if (comp(*(it), *(first)))
+					{
+						insert(first, *(it));
+						it++;
+					}
+					else	
+						first++;						
+				}
+				if (it != x.end())
+				{
+					while (it != x.end())
+					{
+						this->push_back(*(it));
+						it++;
+					}
+				}
+				x.clear();
+			}
+
+			void		sort()
+			{
+				iterator it = this->begin();
+				iterator next = it;
+
+				while (it != this->end())
+				{
+					next++;
+					if (next == this->end())
+						return ;
+					if (*(next) < *(it))
+					{
+						splice(it, *this, next);
+						it = this->begin();
+						next = it;
+					}
+					else
+						it++;
+				}
+			}
+
+			template<class Compare>
+			void		sort(Compare comp)
+			{
+				iterator it = this->begin();
+				iterator next = it;
+
+				while (it != this->end())
+				{
+					next++;
+					if (next == this->end())
+						return ;
+					if (comp(*(next), *(it)))
+					{
+						splice(it, *this, next);
+						it = this->begin();
+						next = it;
+					}
+					else
+						it++;
+				}
+			}
+
+			void		reverse()
+			{
+				
+			}
+
 	};
 
 }

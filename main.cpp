@@ -3,6 +3,11 @@
 #include <list>
 #include "List.hpp"
 #include <vector>
+#include <cmath>
+
+// compare only integral part:
+bool mycomparison (double first, double second)
+{ return ( int(first)<int(second) ); }
 
 // a predicate implemented as a function:
 bool single_digit (const int& value) 
@@ -12,6 +17,28 @@ bool single_digit (const int& value)
 struct is_odd {
 bool operator() (const int& value) { return (value%2)==1; }
 };
+
+// a binary predicate implemented as a function:
+bool same_integral_part (double first, double second)
+{ return ( int(first)==int(second) ); }
+
+// a binary predicate implemented as a class:
+struct is_near {
+  bool operator() (double first, double second)
+  { return (fabs(first-second)<5.0); }
+};
+
+bool compare_nocase (const std::string& first, const std::string& second)
+{
+  unsigned int i=0;
+  while ( (i<first.length()) && (i<second.length()) )
+  {
+    if (tolower(first[i])<tolower(second[i])) return true;
+    else if (tolower(first[i])>tolower(second[i])) return false;
+    ++i;
+  }
+  return ( first.length() < second.length() );
+}
 
 template <class T>
 void	printList(ft::List<T> list)
@@ -270,13 +297,66 @@ int main()
 	printList(list);*/
 
 	//UNIQUE
-	double mydoubles[]={ 2.72,  3.14, 12.15, 12.77, 12.77, 12.77,
+	/*double mydoubles[]={ 2.72,  3.14, 12.15, 12.77, 12.77, 12.77,
                 		15.3,  72.25, 72.25, 73.0,  73.35 };
   	ft::List<double> list (mydoubles,mydoubles+11);
 
 	list.unique();
 
 	printList(list);
+
+	list.unique(same_integral_part);
+
+	printList(list);
+
+	list.unique(is_near());
+
+	printList(list);*/
+
+	//MERGE
+	/*ft::List<double> first, second;
+
+	first.push_back (2.2);
+	first.push_back (2.9);
+	first.push_back (3.1);
+
+	second.push_back (1.4);
+	second.push_back (3.7);
+	second.push_back (7.1);
+
+	first.merge(second);
+
+	printList(first);*/
+
+	// (second is now empty)
+
+	/*second.push_back (2.1);
+
+	first.merge(second,mycomparison);
+
+	printList(first);*/
+
+	//SORT
+	/*ft::List<std::string> list;
+	ft::List<std::string>::iterator it;
+	list.push_back ("one");
+	list.push_back ("two");
+	list.push_back ("Three");
+
+	list.sort();
+
+	printList(list);
+
+	list.sort(compare_nocase);
+
+	printList(list);*/
+
+	//REVERSE
+	ft::List<int> list;
+
+	for (int i=1; i<10; ++i) list.push_back(i);
+
+	list.reverse();
 
 	return 0;
 }

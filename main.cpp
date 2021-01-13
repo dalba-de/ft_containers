@@ -1,7 +1,7 @@
 #include <iostream>
 #include <iomanip>
 #include <list>
-#include "List.hpp"
+#include "List/List.hpp"
 #include <vector>
 #include <cmath>
 
@@ -352,11 +352,85 @@ int main()
 	printList(list);*/
 
 	//REVERSE
-	ft::List<int> list;
+	/*ft::List<int> list;
 
 	for (int i=1; i<10; ++i) list.push_back(i);
 
+	printList(list);
+
 	list.reverse();
+
+	printList(list);*/
+
+	/*
+	** --------- RELATIONAL OPERATORS ----------
+	*/
+
+	/*int myints[]= {10,20,30};
+	ft::List<int> list1(myints, myints + 3);
+	ft::List<int> list2(myints, myints + 3);
+	int myints2[]= {30,20,10};
+	ft::List<int> list3(myints2, myints2 + 3);*/
+	
+
+	//EQUAL
+	
+	/*if (list1 == list2)
+		std::cout << "ambas listas son iguales" << std::endl;
+	else
+		std::cout << "ambas listas son diferentes" << std::endl;*/
+	
+	//NOT EQUAL
+
+	/*if (list1 != list2)
+		std::cout << "ambas listas son diferentes" << std::endl;
+	else
+		std::cout << "ambas listas son iguales" << std::endl;*/
+
+	//LEXICOGRAPHICAL COMPARE (LESS-THAN)
+
+	/*if (list1 < list2)
+		std::cout << "list1 es menor que list2" << std::endl;
+	else
+		std::cout << "list1 no es menor que list2" << std::endl;*/
+	
+	//GREATER-THAN
+
+	/*if (list3 > list2)
+		std::cout << "list3 es mayor que list2" << std::endl;
+	else
+		std::cout << "list3 no es mayor que list2" << std::endl;*/
+
+	//LESS-THAN OR EQUAL
+
+	/*if (list1 <= list2)
+		std::cout << "list1 es menor o igual que list2" << std::endl;
+	else
+		std::cout << "list1 es mayor que list2" << std::endl;*/
+	
+	//GREATER-THAN OR EQUAL
+
+	/*if (list1 >= list2)
+		std::cout << "list1 es mayor o igual que list2" << std::endl;
+	else
+		std::cout << "list1 es menor que list2" << std::endl;*/
+	
+	//SWAP (LIST OVERLOAD)
+
+	ft::List<int> foo (3,100);  
+  	ft::List<int> bar (5,200);
+
+	std::cout << "foo contains: ";
+	printList(foo);
+	std::cout << "bar contains: ";
+	printList(bar);
+
+	ft::swap(foo, bar);
+
+	std::cout << "foo contains: ";
+	printList(foo);
+	std::cout << "bar contains: ";
+	printList(bar);
 
 	return 0;
 }

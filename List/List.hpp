@@ -2,7 +2,8 @@
 # define LIST_HPP
 # include <memory>
 # include <limits>
-# include "IteratorList.hpp"
+# include "../Iterators/IteratorList.hpp"
+# include "../Tools/Algorithm.hpp"
 
 namespace ft
 {
@@ -478,10 +479,61 @@ namespace ft
 
 			void		reverse()
 			{
-				
-			}
+				iterator	it = this->begin();
+				List<T>		temp;
 
+				while (it != this->end())
+				{
+					temp.push_front(*(it));
+					it++;
+				}
+				*this = temp;
+			}
 	};
+
+	template<class T, class Alloc>
+	bool	operator==(const List<T, Alloc>& lhs, const List<T, Alloc>& rhs)
+	{
+		if (lhs.size() != rhs.size())
+			return (false);
+		return (ft::equal(lhs.begin(), lhs.end(), rhs.begin()));
+	}
+
+	template<class T, class Alloc>
+	bool	operator!=(const List<T, Alloc>& lhs, const List<T, Alloc>& rhs)
+	{
+		return(!(lhs == rhs));
+	}
+
+	template<class T, class Alloc>
+  	bool	operator<(const List<T, Alloc>& lhs, const List<T, Alloc>& rhs)
+	{
+		return (ft::lexicographical_compare(lhs.begin(), lhs.end(), rhs.begin(), rhs.end()));
+	}
+
+	template<class T, class Alloc>
+  	bool	operator<=(const List<T, Alloc>& lhs, const List<T, Alloc>& rhs)
+	{
+		return (!(rhs < lhs));
+	}
+
+	template<class T, class Alloc>
+  	bool	operator>(const List<T, Alloc>& lhs, const List<T, Alloc>& rhs)
+	{
+		return (rhs < lhs);
+	}
+
+	template<class T, class Alloc>
+  	bool	operator>=(const List<T, Alloc>& lhs, const List<T, Alloc>& rhs)
+	{
+		return (!(lhs < rhs));
+	}
+
+	template<class T, class Alloc>
+  	void	swap(List<T, Alloc>& x, List<T, Alloc>& y)
+	{
+		x.swap(y);
+	}
 
 }
 

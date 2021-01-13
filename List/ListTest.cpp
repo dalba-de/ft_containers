@@ -6,7 +6,7 @@
 /*   By: dalba-de <dalba-de@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/05 12:57:21 by dalba-de          #+#    #+#             */
-/*   Updated: 2021/01/13 01:04:55 by dalba-de         ###   ########.fr       */
+/*   Updated: 2021/01/13 17:15:32 by dalba-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,25 +58,11 @@ void	printList(std::list<T> list)
 
 int	main()
 {
-	std::list<std::string> mylist;
-	std::list<std::string>::iterator it;
-	mylist.push_back ("one");
-	mylist.push_back ("two");
-	mylist.push_back ("Three");
+	std::list<int> a = {10, 20, 30};
+	std::list<int> b = {10, 20, 30};
+	std::list<int> c = {30, 20, 10};
 
-	mylist.sort();
-
-	std::cout << "mylist contains:";
-	for (it=mylist.begin(); it!=mylist.end(); ++it)
-		std::cout << ' ' << *it;
-	std::cout << '\n';
-
-	mylist.sort(compare_nocase);
-
-	std::cout << "mylist contains:";
-	for (it=mylist.begin(); it!=mylist.end(); ++it)
-		std::cout << ' ' << *it;
-	std::cout << '\n';
+	std::cout << (a<b) << std::endl;
 
 	return 0;
 }

@@ -6,7 +6,7 @@
 /*   By: dalba-de <dalba-de@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/05 12:57:21 by dalba-de          #+#    #+#             */
-/*   Updated: 2021/01/13 17:15:32 by dalba-de         ###   ########.fr       */
+/*   Updated: 2021/01/21 12:39:11 by dalba-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 #include <cmath>
 #include <string>
 #include <cctype>
+#include "List.hpp"
+#include "../Tools/Shared_functions.hpp"
 
 // compare only integral part:
 bool mycomparison (double first, double second)
@@ -58,11 +60,19 @@ void	printList(std::list<T> list)
 
 int	main()
 {
-	std::list<int> a = {10, 20, 30};
-	std::list<int> b = {10, 20, 30};
-	std::list<int> c = {30, 20, 10};
+	std::cout << "\n\033[1;31m Original List\n \033[0m" << std::endl;
 
-	std::cout << (a<b) << std::endl;
+	std::list<int> olist;
+
+	olist.assign(3, 42);
+	ft::printoList(olist);
+
+	std::cout << "\n\033[1;33m My List\n \033[0m" << std::endl;
+
+	ft::List<int> list;
+
+	list.assign(3, 42);
+	ft::printList(list);
 
 	return 0;
 }

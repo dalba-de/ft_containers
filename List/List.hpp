@@ -121,8 +121,8 @@ namespace ft
 			bool		empty() const
 			{
 				if (size_ == 0)
-					return 0;
-				return 1;
+					return 1;
+				return 0;
 			}
 
 			size_type	size() const { return (size_); }
@@ -160,7 +160,8 @@ namespace ft
 */
 
 			template<class InputIterator>
-			void		assign(InputIterator first, InputIterator last)
+			void		assign(InputIterator first, InputIterator last,
+						typename std::enable_if<!std::is_integral<InputIterator>::value>::type * = 0)
 			{
 				clear();
 				while (first != last)
@@ -271,7 +272,7 @@ namespace ft
 
 			void		clear()
 			{
-				while (empty())
+				while (!empty())
 					pop_front();
 			}
 

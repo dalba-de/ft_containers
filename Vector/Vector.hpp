@@ -5,6 +5,9 @@
 # include <string>
 # include <memory>
 # include <limits>
+# include <exception>
+# include <stdexcept>
+# include <sstream>
 # include "../Tools/Algorithm.hpp"
 # include "../Iterators/Iterator.hpp"
 
@@ -110,6 +113,29 @@ namespace ft
 			size_type				max_size() const
 			{ return std::numeric_limits<size_type>::max() / sizeof(value_type); }
 
+			void					resize(size_type n, value_type val = value_type())
+			{
+				if (n <= size_)
+				{
+					size_type	auxSize = size_;
+					for (; n < auxSize; n++)
+						pop_back();
+				}
+				else if (n > size_ && n <= capacity_)
+				{
+					size_type	auxSize = size_;
+					for (; n > auxSize; n--)
+						push_back(val);
+				}
+				else if (n > size_ && n > capacity_)
+				{
+					reserve(n);
+					size_type	auxSize = size_;
+					for (; n > auxSize; n--)
+						push_back(val);
+				}
+			}
+
 			size_type				capacity() const { return capacity_; }
 
 			bool					empty() const
@@ -132,15 +158,187 @@ namespace ft
 			}
 
 /*
+** ---------------------------- ELEMENT ACCESS -----------------------------
+*/
+
+			reference				operator[] (size_type n) { return ptr_[n]; }
+			
+			const_reference			operator[] (size_type n) const { return ptr_[n]; }
+
+			reference				at (size_type n)
+			{
+				if (n > size_)
+				{
+					std::ostringstream os;
+					os << "vector::_M_range_check: __n (which is " << n << ") >= this->size() (which is " << size_ << ")";
+					throw std::out_of_range(os.str());
+				}
+				return ptr_[n];
+			}
+
+			const_reference			at (size_type n) const
+			{
+				if (n > size_)
+				{
+					std::ostringstream os;
+					os << "vector::_M_range_check: __n (which is " << n << ") >= this->size() (which is " << size_ << ")";
+					throw std::out_of_range(os.str());
+				}
+				return ptr_[n];
+			}
+
+			reference				front() { return ptr_[0]; }
+
+			const_reference			front() const { return ptr_[0]; }
+
+			reference				back() { return ptr_[size_ - 1]; }
+
+			const_reference			back() const { return ptr_[size_ - 1]; }
+
+/*
 ** --------------------------------- MODIFIERS ---------------------------------
 */
+
+			template<class InputIterator>
+			void					assign(InputIterator first, InputIterator last,
+									typename std::enable_if<!std::is_integral<InputIterator>::value>::type * = 0)
+			{
+				clear();
+				if (capacity_ == 0)
+					reserve(std::distance(first, last));
+				while (first != last)
+				{
+					push_back(*(first));
+					first++;
+				}
+			}
+
+			void					assign(size_type n, const value_type& val)
+			{
+				clear();
+				if (capacity_ == 0)
+					reserve(n);
+				while (n > 0)
+				{
+					push_back(val);
+					n--;
+				}
+			}
 
 			void					push_back(const value_type& val)
 			{
 				if (size_ >= capacity_)
-					reserve(capacity_ * 2);
+				{
+					if (capacity_ == 0)
+						reserve(1);
+					else
+						reserve(capacity_ * 2);
+				}
 				ptr_[size_] = val;
 				size_++;
+			}
+
+			void					pop_back()
+			{
+				size_type	cont = size_ - 1;
+				pointer		aux = new T[capacity_];
+
+				for (size_type i = 0; i < cont; i++)
+					aux[i] = ptr_[i];
+				delete [] ptr_;
+				ptr_ = aux;
+				size_--;		
+			}
+
+			iterator				insert(iterator position, const value_type& val)
+			{
+				size_type	i = 0;
+				iterator	aux = this->begin();
+
+				while (aux != position)
+				{
+					i++;
+					aux++;
+				}
+				if (size_ >= capacity_)
+				{
+					if (capacity_ == 0)
+						reserve(1);
+					else
+						reserve(capacity_ + 1);
+				}
+				size_type	j = size_;
+				while (j > i)
+				{
+					ptr_[j] = ptr_[j - 1];
+					j--;
+				}
+				ptr_[i] = val;
+				size_++;
+				return (iterator(&ptr_[i]));
+			}
+
+			void					insert(iterator position, size_type n, const value_type& val)
+			{
+				/*size_type	i = 0;
+				iterator	aux = this->begin();
+
+				while (aux != position)
+				{
+					i++;
+					aux++;
+				}
+				i = i + n - 1;
+				if (size_ >= capacity_)
+				{
+					if (capacity_ == 0)
+						reserve(1);
+					else if ((size_ + n) <= (capacity_ * 2))
+						reserve(capacity_ * 2);
+					else
+						reserve(size_ + n);
+				}
+				size_type	j = size_ + n - 1;
+				while (j > i)
+				{
+					ptr_[j] = ptr_[j - n];
+					j--;
+				}
+				size_ += n;
+				while (n > 0)
+				{
+					ptr_[i] = val;
+					i--;
+					n--;
+				}*/
+				while (n > 0)
+				{
+					position = insert(position, val);
+					n--;
+				}
+			}
+
+			template <class InputIterator>
+			void					insert(iterator position, InputIterator first, InputIterator last,
+									typename std::enable_if<!std::is_integral<InputIterator>::value>::type * = 0)
+			{
+				while (first != last)
+				{
+					position = insert(position, *(first));
+					first++;
+					position++;
+				}
+			}
+
+			/*iterator				erase(iterator position)
+			{
+
+			}*/
+
+			void					clear()
+			{
+				while (!empty())
+					pop_back();
 			}
 
 		private:

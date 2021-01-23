@@ -4,7 +4,7 @@
 
 namespace ft
 {
-	template <typename T, class Category = std::bidirectional_iterator_tag>
+	template <typename T, class Category = std::random_access_iterator_tag>
 	class iterator
 	{
 		public:
@@ -21,6 +21,10 @@ namespace ft
 			self_type operator++(int) { self_type i = *this; ptr_++; return i; } // POSTFIX
 			self_type operator--() { ptr_--; return *this; }
 			self_type operator--(int) { self_type i = *this; ptr_--; return i; }
+			self_type operator+=(int value) { this->ptr_ += value; return (*this); }
+			self_type operator+(int value) { self_type i = *this; return (i += value); }
+			self_type operator-=(int value) { this->ptr_ -= value; return (*this); }
+			self_type operator-(int value) { self_type i = *this; return (i -= value); }
 			value_type& operator*() { return *ptr_; }
 			value_type* operator->() { return ptr_; }
 			bool operator==(const self_type& rhs) { return ptr_ == rhs.ptr_; }
@@ -29,7 +33,7 @@ namespace ft
 			pointer ptr_;
 	};
 
-	template <typename T, class Category = std::bidirectional_iterator_tag>
+	template <typename T, class Category = std::random_access_iterator_tag>
 	class const_iterator
 	{
 		public:
@@ -46,6 +50,10 @@ namespace ft
 			self_type operator++(int) { self_type i = *this; ptr_++; return i; } // POSTFIX
 			self_type operator--() { ptr_--; return *this; }
 			self_type operator--(int) { self_type i = *this; ptr_--; return i; }
+			self_type operator+=(int value) { this->ptr_ += value; return (*this); }
+			self_type operator+(int value) { self_type i = *this; return (i += value); }
+			self_type operator-=(int value) { this->ptr_ -= value; return (*this); }
+			self_type operator-(int value) { self_type i = *this; return (i -= value); }
 			const value_type& operator*() { return *ptr_; }
 			const value_type* operator->() { return ptr_; }
 			bool operator==(const self_type& rhs) const { return ptr_ == rhs.ptr_; }
@@ -86,6 +94,19 @@ namespace ft
 				++( *this );
 				return old;
 			}
+
+			reverse_iterator & operator-- ()
+			{
+				this->It::operator++();
+				return *this;
+			}
+
+			reverse_iterator operator-- ( int )
+			{
+				reverse_iterator old = *this;
+				--( *this );
+				return old;
+			}
 	};
 
 	template <typename It>
@@ -118,6 +139,19 @@ namespace ft
 			{
 				const_reverse_iterator old = *this;
 				++( *this );
+				return old;
+			}
+
+			const_reverse_iterator & operator-- ()
+			{
+				this->It::operator++();
+				return *this;
+			}
+
+			const_reverse_iterator operator-- ( int )
+			{
+				const_reverse_iterator old = *this;
+				--( *this );
 				return old;
 			}
 	};

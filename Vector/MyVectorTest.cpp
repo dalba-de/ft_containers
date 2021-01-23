@@ -8,53 +8,33 @@ int main()
 {
 	std::cout << "\n\033[1;31m Vector Original\n \033[0m" << std::endl;
 
-	std::vector<int> ovector(5, 42);
+	std::vector<int> ovec;
 
-	ft::printoVector(ovector);
+	for (int i = 1; i <= 10; i++)
+		ovec.push_back(i);
+	ft::printoVector(ovec);
 
-	std::cout << ovector.empty() << std::endl;
-	std::cout << ovector.size() << std::endl;
-	std::cout << ovector.capacity() << std::endl;
+	std::vector<int>::reverse_iterator orit = ovec.rend();
 
-	ovector.reserve(10);
-
-	ft::printoVector(ovector);
-	std::cout << ovector.capacity() << std::endl;
-
-	for (int i = 0; i <= 5; i++)
-		ovector.push_back(55);
-	ft::printoVector(ovector);
-	std::cout << ovector.capacity() << std::endl;
-
-	for (int i = 0; i <= 10; i++)
-		ovector.push_back(66);
-	ft::printoVector(ovector);
-	std::cout << ovector.capacity() << std::endl;	
+	orit--;
+	std::cout << *orit << std::endl;
+	/*ovec.erase(ovec.begin() + 5);
+	ft::printoVector(ovec);*/
 
 	std::cout << "\n\033[1;33m My Vector\n \033[0m" << std::endl;
 
-	ft::Vector<int> vector(5, 42);
+	ft::Vector<int> vec;
 
-	ft::printVector(vector);
+	for (int i = 1; i <= 10; i++)
+		vec.push_back(i);
+	ft::printVector(vec);
 
-	std::cout << vector.empty() << std::endl;
-	std::cout << vector.size() << std::endl;
-	std::cout << vector.capacity() << std::endl;
+	ft::Vector<int>::reverse_iterator rit = vec.rend();
 
-	vector.reserve(10);
-
-	ft::printVector(vector);
-	std::cout << vector.capacity() << std::endl;
-
-	for (int i = 0; i <= 5; i++)
-		vector.push_back(55);
-	ft::printVector(vector);
-	std::cout << vector.capacity() << std::endl;
-
-	for (int i = 0; i <= 10; i++)
-		vector.push_back(66);
-	ft::printVector(vector);
-	std::cout << vector.capacity() << std::endl;
-
-
+	rit--;
+	std::cout << *rit << std::endl;
+	/*for ( ; rit != vec.end(); rit++)
+		std::cout << *rit << ' ';
+	std::cout << std::endl;*/
+	
 }

@@ -4,8 +4,18 @@
 #include "../Tools/Shared_functions.hpp"
 #include <vector>
 
+void	pruebaprint(ft::Vector<int> const & vec)
+{
+	ft::Vector<int>::const_iterator it = vec.begin();
+
+	for ( ; it != vec.end(); it++)
+		std::cout << *it << ' ';
+	std::cout << std::endl;
+}
+
 int main()
 {
+	/*
 	std::cout << "\n\033[1;31m Vector Original\n \033[0m" << std::endl;
 
 	std::vector<int> ovec;
@@ -18,6 +28,8 @@ int main()
 
 	orit--;
 	std::cout << *orit << std::endl;
+	*/
+
 	/*ovec.erase(ovec.begin() + 5);
 	ft::printoVector(ovec);*/
 
@@ -27,7 +39,9 @@ int main()
 
 	for (int i = 1; i <= 10; i++)
 		vec.push_back(i);
-	ft::printVector(vec);
+	//ft::printVector(vec);
+
+	pruebaprint(vec);
 
 	ft::Vector<int>::reverse_iterator rit = vec.rend();
 

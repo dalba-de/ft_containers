@@ -94,7 +94,7 @@ namespace ft
 
 			iterator				end() { return iterator(&ptr_[size_]); }
 
-			const_iterator			end() const { return iterator(&ptr_[size_]); }
+			const_iterator			end() const { return const_iterator(&ptr_[size_]); }
 
 			reverse_iterator		rbegin() { return reverse_iterator(this->end()); }
 

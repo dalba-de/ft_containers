@@ -193,7 +193,7 @@ namespace ft
 			{
 				link<T> *aux = position.getList();
 				size_++;
-				return (aux->prev = aux->prev->next = new link<T>{ val, aux->prev, aux } );
+				return (aux->prev = aux->prev->next = new link<T>( val, aux->prev, aux ) );
 			}
 
 			void		insert(iterator position, size_type n, const value_type& val)

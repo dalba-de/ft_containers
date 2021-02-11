@@ -23,7 +23,7 @@ namespace ft
 		link<T>	*prev;
 		link<T>	*next;
 
-		link (const T &d = T{}, link* p = nullptr, link* n = nullptr)
+		link (const T &d = T(), link* p = nullptr, link* n = nullptr)
 		: value(d), prev(p), next(n) { }
 	};
 	

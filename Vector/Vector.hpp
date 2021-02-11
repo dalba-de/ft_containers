@@ -330,10 +330,17 @@ namespace ft
 				}
 			}
 
-			/*iterator				erase(iterator position)
+			iterator				erase(iterator position)
 			{
-
-			}*/
+				iterator cursor = position;
+				while (cursor + 1 != this->end())
+				{
+					*cursor = *(cursor + 1);
+					cursor++;
+				}
+				size_--;
+				return (position);
+			}
 
 			void					clear()
 			{

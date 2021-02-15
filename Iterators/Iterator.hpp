@@ -25,6 +25,7 @@ namespace ft
 			self_type operator+(int value) { self_type i = *this; return (i += value); }
 			self_type operator-=(int value) { this->ptr_ -= value; return (*this); }
 			self_type operator-(int value) { self_type i = *this; return (i -= value); }
+			difference_type operator-(iterator const& other) const { return this->ptr_ - other.ptr_; }
 			value_type& operator*() { return *ptr_; }
 			value_type* operator->() { return ptr_; }
 			bool operator==(const self_type& rhs) { return ptr_ == rhs.ptr_; }
@@ -54,6 +55,7 @@ namespace ft
 			self_type operator+(int value) { self_type i = *this; return (i += value); }
 			self_type operator-=(int value) { this->ptr_ -= value; return (*this); }
 			self_type operator-(int value) { self_type i = *this; return (i -= value); }
+			difference_type operator-(const_iterator const& other) const { return this->ptr_ - other.ptr_; }
 			const value_type& operator*() { return *ptr_; }
 			const value_type* operator->() { return ptr_; }
 			bool operator==(const self_type& rhs) const { return ptr_ == rhs.ptr_; }

@@ -66,7 +66,7 @@ namespace ft
 
 			template<class InputIterator>
 			List(InputIterator first, InputIterator last,
-			typename std::enable_if<!std::is_integral<InputIterator>::value>::type * = 0)
+			typename ft::enable_if<!std::is_integral<InputIterator>::value>::type * = 0)
 			{
 				size_ = 0;
 				head = new link<T>;
@@ -161,7 +161,7 @@ namespace ft
 
 			template<class InputIterator>
 			void		assign(InputIterator first, InputIterator last,
-						typename std::enable_if<!std::is_integral<InputIterator>::value>::type * = 0)
+						typename ft::enable_if<!std::is_integral<InputIterator>::value>::type * = 0)
 			{
 				clear();
 				while (first != last)
@@ -207,7 +207,7 @@ namespace ft
 
 			template <class InputIterator>
 			void		insert(iterator position, InputIterator first, InputIterator last, 
-						typename std::enable_if<!std::is_integral<InputIterator>::value>::type * = 0)
+						typename ft::enable_if<!std::is_integral<InputIterator>::value>::type * = 0)
 			{
 				while (first != last)
 				{
@@ -491,6 +491,10 @@ namespace ft
 				*this = temp;
 			}
 	};
+
+/*
+** ---------------------------- RELATIONAL OPERATORS ----------------------------
+*/
 
 	template<class T, class Alloc>
 	bool	operator==(const List<T, Alloc>& lhs, const List<T, Alloc>& rhs)

@@ -1,6 +1,7 @@
 #ifndef MAP_HPP
 # define MAP_HPP
 # include "MapIterator.hpp"
+# include "../Tools/Algorithm.hpp"
 # include <iostream>
 # include <memory>
 # include <limits>
@@ -122,7 +123,95 @@ namespace ft
 					return search(n->right, k);
 
 				return  search(n->left, k);
+			}
 
+			void		deleteNode(node* n)
+			{
+				node *	curr = n;
+				node *	parent;
+
+				if (!curr->left && !curr->right)
+				{
+					if (curr == root)
+						root = nullptr;
+					else
+					{
+						parent = curr->parent;
+						if (parent->left == curr)
+							parent->left = nullptr;
+						else if (parent->right == curr)
+							parent->right = nullptr;
+					}
+					delete curr;
+					return ;
+				}
+				if (!curr->left && curr->right)
+				{
+					if (curr == root)
+					{
+						root = root->right;
+						root->parent = nullptr;
+						return ;
+					}
+					parent = curr->parent;
+					if (parent->left == curr)
+					{
+						parent->left = curr->right;
+						curr->right->parent = parent;
+					}
+					else
+					{
+						parent->right = curr->right;
+						curr->right->parent = parent;
+					}
+					delete curr;
+					return ;
+				}
+				if (curr->left && !curr->right)
+				{
+					if (curr == root)
+					{
+						root = root->left;
+						root->parent = nullptr;
+						return ;
+					}
+					parent = curr->parent;
+					if (parent->left == curr)
+					{
+						parent->left = curr->left;
+						curr->left->parent = parent;
+					}
+					else
+					{
+						parent->right = curr->left;
+						curr->left->parent = parent;
+					}
+					delete curr;
+					return ;
+				}
+				if (curr->left && curr->right)
+				{
+					if (!curr->right->left)
+					{
+						curr->pair.first =  curr->right->pair.first;
+						curr->pair.second = curr->right->pair.second;
+						curr->right = curr->right->right;
+						curr->right->parent = curr;
+
+						delete curr;
+						return ;
+					}
+					node * 	succ = findMin(curr->right);
+					node *	succParent = succ->parent;
+
+					curr->pair.first = succ->pair.first;
+					curr->pair.second = succ->pair.second;
+
+					succParent->left = succ->right;
+					succ->right->parent = succParent;
+					delete curr;
+					return ;
+				}
 			}
 
 /*
@@ -205,17 +294,17 @@ namespace ft
 ** ---------------------------- ELEMENT ACCESS -----------------------------
 */
 
-	mapped_type&	operator[](const key_type& k)
-	{
-		iterator	it = find(k);
-		std::pair<typename ft::Map<key_type, mapped_type>::iterator, bool>	ret;
+		mapped_type&	operator[](const key_type& k)
+		{
+			iterator	it = find(k);
+			std::pair<typename ft::Map<key_type, mapped_type>::iterator, bool>	ret;
 
-		if (it == this->end())
-			ret = insert(std::make_pair(k, mapped_type()));
-		else
-			return (it->second);	
-		return ret.first->second;
-	}
+			if (it == this->end())
+				ret = insert(std::make_pair(k, mapped_type()));
+			else
+				return (it->second);	
+			return ret.first->second;
+		}
 
 /*
 ** -------------------------------- MODIFIERS ---------------------------------
@@ -253,28 +342,91 @@ namespace ft
 			return (iterator(node_insert(val.first, val.second, position.getNode())));
 		}
 
+		template <class InputIterator>
+		void	insert(InputIterator first, InputIterator last,
+				typename ft::enable_if<!std::is_integral<InputIterator>::value>::type * = 0)
+		{
+			while (first != last)
+			{
+				insert(*first);
+				first++;
+			}
+		}
+
+		void		erase(iterator position)
+		{
+			node*	aux =  position.getNode();
+
+			deleteNode(aux);
+			size_--;
+		}
+
+		size_type	erase(const key_type& k)
+		{
+			iterator	it;
+
+			it = find(k);
+			if (it == this->end())
+				return (0);
+			erase(it);
+			return (1);
+		}
+
+		void		erase(iterator first, iterator last)
+		{
+			while (first != last)
+				erase(first++);
+		}
+
+		void		swap(Map& x)
+		{
+			Map		ret;
+
+			ret.insert(this->begin(), this->end());
+			this->clear();
+			this->insert(x.begin(), x.end());
+			x.clear();
+			x.insert(ret.begin(), ret.end());
+		}
+
+		void		clear()
+		{
+			iterator it = this->begin();
+			for ( ; it != this->end(); it++)
+				erase(it);
+		}
+
+/*
+** --------------------------------- OBSERVERS ---------------------------------
+*/
+
+		key_compare		key_comp() const
+		{
+			return m_comp;
+		}
+
 
 /*
 ** --------------------------------- OPERATIONS ---------------------------------
 */
 
-	iterator		find(const key_type& k)
-	{
-		node* tmp = search(root, k);
+		iterator		find(const key_type& k)
+		{
+			node* tmp = search(root, k);
 
-		if (!tmp)
-			return (this->end());
-		return (iterator(tmp));
-	}
+			if (!tmp)
+				return (this->end());
+			return (iterator(tmp));
+		}
 
-	const_iterator	find(const key_type& k) const
-	{
-		node* tmp = search(root, k);
+		const_iterator	find(const key_type& k) const
+		{
+			node* tmp = search(root, k);
 
-		if (!tmp)
-			return (this->end());
-		return (const_iterator(tmp));
-	}
+			if (!tmp)
+				return (this->end());
+			return (const_iterator(tmp));
+		}
 
 	};
 }

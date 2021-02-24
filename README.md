@@ -12,4 +12,4 @@
 * [stl_map.h implementation](https://github.com/gcc-mirror/gcc/blob/master/libstdc%2B%2B-v3/include/bits/stl_map.h)
 * [Implementation of std::map in c++](https://github.com/Nikhil14/Map)
 * [Basic Hash Map Implementation in C++](https://github.com/aozturk/HashMap)
-* []
+* [BST](http://www.mathcs.emory.edu/~cheung/Courses/171/Syllabus/9-BinTree/)

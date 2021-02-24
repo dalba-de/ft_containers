@@ -2,8 +2,10 @@
 # define SHARED_FUNCTIONS_HPP
 # include "../List/List.hpp"
 # include "../Vector/Vector.hpp"
+# include "../Map/Map.hpp"
 # include <list>
 # include <vector>
+# include <map>
 
 namespace ft
 {
@@ -33,6 +35,16 @@ namespace ft
 		std::cout << std::endl;
 	};
 
+	template <class key, class T>
+	void	printMap(ft::Map<key, T> map)
+	{
+		typename ft::Map<key, T>::iterator it;
+
+		it = map.begin();
+		for ( ; it != map.end(); it++)
+			std::cout << it->first << ' ' << it->second << std::endl;
+	};
+
 	template <class T>
 	void	printoList(std::list<T> list)
 	{
@@ -57,6 +69,16 @@ namespace ft
 			std::cout << *it << " ";
 		}
 		std::cout << std::endl;
+	};
+
+	template <class key, class T>
+	void	printoMap(std::map<key, T> map)
+	{
+		typename std::map<key, T>::iterator it;
+
+		it = map.begin();
+		for ( ; it != map.end(); it++)
+			std::cout << it->first << ' ' << it->second << std::endl;
 	};
 }
 

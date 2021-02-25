@@ -33,7 +33,7 @@ namespace ft
 			typedef ft::MNode<Key, T>									node;
 			class value_compare
 			{
-				friend class map;
+				friend class Map;
 				protected:
 				Compare comp;
 				value_compare (Compare c) : comp(c) {}
@@ -223,6 +223,44 @@ namespace ft
 						const allocator_type& = allocator_type())
 						: root(nullptr), size_(0), m_comp(comp) {}
 
+		Map				(const Map& x) : root(nullptr), size_(0)
+		{
+			m_comp = x.key_comp();
+			*this = x;
+			return ;
+		}
+
+		template <class InputIterator>
+		Map				(InputIterator first, InputIterator last,
+						const key_compare& = key_compare(),
+						const allocator_type& = allocator_type())
+						: root(nullptr), size_(0)
+		{
+			this->insert(first, last);
+		}
+
+/*
+** ------------------------------- DESTRUCTOR --------------------------------
+*/
+
+		~Map() { clear(); }
+
+/*
+** --------------------------------- OVERLOAD ---------------------------------
+*/
+
+		Map&		operator=(Map const& rhs) 
+		{
+			if (!rhs.empty())
+			{
+				this->clear();
+				this->insert(rhs.begin(), rhs.end());
+			}
+			else
+				this->clear();
+			return *this;
+		}
+
 /*
 ** --------------------------------- ITERATORS ---------------------------------
 */
@@ -391,6 +429,8 @@ namespace ft
 
 		void		clear()
 		{
+			if (!root)
+				return  ;
 			iterator it = this->begin();
 			for ( ; it != this->end(); it++)
 				erase(it);
@@ -403,6 +443,11 @@ namespace ft
 		key_compare		key_comp() const
 		{
 			return m_comp;
+		}
+
+		value_compare	value_comp() const
+		{
+			return (value_compare(m_comp));
 		}
 
 
@@ -428,7 +473,128 @@ namespace ft
 			return (const_iterator(tmp));
 		}
 
+		size_type		count(const key_type& k)
+		{
+			iterator	it;
+
+			it = find(k);
+			if (it != this->end())
+				return (1);
+			return (0);
+		}
+
+		iterator		lower_bound(const key_type& k)
+		{
+			for (iterator it = this->begin(); it != this->end(); it++)
+			{
+				if (!(m_comp(it->first, k)))
+					return (it);
+			}
+			return (end());
+		}
+
+		const_iterator	lower_bound(const key_type& k) const
+		{
+			for (iterator it = this->begin(); it != this->end(); it++)
+			{
+				if (!(m_comp(it->first, k)))
+					return (it);
+			}
+			return (end());
+		}
+
+		iterator		upper_bound(const key_type& k)
+		{
+			for (iterator it = this->begin(); it != this->end(); it++)
+			{
+				if (!(m_comp(it->first, k)))
+				{
+					if (it->first == k)
+						return (++it);
+					return (it);
+				}
+			}
+			return (end());
+		}
+
+		const_iterator	upper_bound(const key_type& k) const
+		{
+			for (iterator it = this->begin(); it != this->end(); it++)
+			{
+				if (!(m_comp(it->first, k)))
+				{
+					if (it->first == k)
+						return (++it);
+					return (it);
+				}
+			}
+			return (end());
+		}
+
+		std::pair<iterator, iterator>	equal_range(const key_type& k)
+		{
+			iterator itlow, itup;
+
+			itlow = lower_bound(k);
+			itup = upper_bound(k);
+			return (std::make_pair(itlow, itup));
+		}
 	};
+
+/*
+** ---------------------------- RELATIONAL OPERATORS ----------------------------
+*/
+
+		template <class Key, class T, class Compare, class Alloc>
+		bool	operator==(const Map<Key, T, Compare, Alloc>& lhs,
+							const Map<Key, T, Compare, Alloc>& rhs)
+		{
+			if (lhs.size() != rhs. size())
+				return false;
+			return (ft::equal(lhs.begin(), lhs.end(), rhs.begin()));
+		}
+
+		template <class Key, class T, class Compare, class Alloc>
+		bool	operator!=(const Map<Key, T, Compare, Alloc>& lhs,
+							const Map<Key, T, Compare, Alloc>& rhs)	
+		{
+			return (!(lhs == rhs));
+		}
+
+		template <class Key, class T, class Compare, class Alloc>
+		bool	operator<(const Map<Key, T, Compare, Alloc>& lhs,
+							const Map<Key, T, Compare, Alloc>& rhs)
+		{
+			return (ft::lexicographical_compare(lhs.begin(), lhs.end(), rhs.begin(), rhs.end()));
+		}
+
+		template <class Key, class T, class Compare, class Alloc>
+		bool	operator<=(const Map<Key, T, Compare, Alloc>& lhs,
+							const Map<Key, T, Compare, Alloc>& rhs)
+		{
+			return (!(rhs < lhs));
+		}
+
+		template <class Key, class T, class Compare, class Alloc>
+		bool	operator>(const Map<Key, T, Compare, Alloc>& lhs,
+							const Map<Key, T, Compare, Alloc>& rhs)
+		{
+			return (rhs < lhs);
+		}
+
+		template <class Key, class T, class Compare, class Alloc>
+		bool	operator>=(const Map<Key, T, Compare, Alloc>& lhs,
+							const Map<Key, T, Compare, Alloc>& rhs)
+		{
+			return (!(lhs < rhs));
+		}
+
+		template <class Key, class T, class Compare, class Alloc>
+		void	swap(Map<Key, T, Compare, Alloc>& x, Map<Key, T, Compare, Alloc>& y)
+		{
+			x.swap(y);
+		}
+
 }
 
 #endif

@@ -16,28 +16,43 @@ int	main()
 	std::cout << "\n\033[1;31m Map Original\n \033[0m" << std::endl;
 
 	std::map<char,int> first;
+	std::map<char,int> second;
 	
+	first['a']=1;
+	first['b']=2;
+	first['c']=3;
 
-	first['x']=8;
-	first['y']=16;
-	first['z']=32;
+	second['d']=4;
+	second['e']=5;
 
-	std::map<char,int> second(first.begin(), first.end());                // second now contains 3 ints
+	first.swap(second);
+
+	ft::printoMap(first);
+
+	std::cout<< std::endl;
 
 	ft::printoMap(second);
 
 	std::cout << "\n\033[1;33m My Map\n \033[0m" << std::endl;
 	
 	ft::Map<char, int>	myfirst;
-	
+	ft::Map<char, int>	mysecond;
 
-	myfirst['x']=8;
-	myfirst['y']=16;
-	myfirst['z']=32;
+	myfirst['a']=1;
+	myfirst['b']=2;
+	myfirst['c']=3;
 
-	ft::Map<char, int>	mysecond(myfirst.begin(), myfirst.end());
+	mysecond['d']=4;
+	mysecond['e']=5;
+
+	myfirst.swap(mysecond);
+
+	ft::printMap(myfirst);
+	std::cout << "first size: " << myfirst.size() << std::endl;
+	std::cout << std::endl;
 
 	ft::printMap(mysecond);
+	std::cout << "second size: " << mysecond.size() << std::endl;
 
 	return 0;
 }

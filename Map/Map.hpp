@@ -214,6 +214,15 @@ namespace ft
 				}
 			}
 
+			void		freeMap(node* n)
+			{
+				if (n->right)
+					freeMap(n->right);
+				if (n->left)
+					freeMap(n->left);
+				delete n;
+			}
+
 /*
 ** ------------------------------- CONSTRUCTOR --------------------------------
 */
@@ -243,7 +252,7 @@ namespace ft
 ** ------------------------------- DESTRUCTOR --------------------------------
 */
 
-		~Map() { clear(); }
+		~Map() { freeMap(root); }
 
 /*
 ** --------------------------------- OVERLOAD ---------------------------------
@@ -418,13 +427,8 @@ namespace ft
 
 		void		swap(Map& x)
 		{
-			Map		ret;
-
-			ret.insert(this->begin(), this->end());
-			this->clear();
-			this->insert(x.begin(), x.end());
-			x.clear();
-			x.insert(ret.begin(), ret.end());
+			ft::swap(size_, x.size_);
+			ft::swap(root, x.root);
 		}
 
 		void		clear()

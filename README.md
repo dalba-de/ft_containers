@@ -13,3 +13,6 @@
 * [Implementation of std::map in c++](https://github.com/Nikhil14/Map)
 * [Basic Hash Map Implementation in C++](https://github.com/aozturk/HashMap)
 * [BST](http://www.mathcs.emory.edu/~cheung/Courses/171/Syllabus/9-BinTree/)
+
+### Multimap
+* [Handle duplicates in BST](https://www.geeksforgeeks.org/how-to-handle-duplicates-in-binary-search-tree/)

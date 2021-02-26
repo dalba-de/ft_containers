@@ -216,6 +216,11 @@ namespace ft
 
 			void		freeMap(node* n)
 			{
+				if (!n)
+				{
+					delete n;
+					return ;
+				}
 				if (n->right)
 					freeMap(n->right);
 				if (n->left)

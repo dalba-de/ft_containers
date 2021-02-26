@@ -36,23 +36,11 @@ int	main()
 	std::cout << "\n\033[1;33m My Map\n \033[0m" << std::endl;
 	
 	ft::Map<char, int>	myfirst;
-	ft::Map<char, int>	mysecond;
+	//ft::Map<char, int>	mysecond;
 
 	myfirst['a']=1;
 	myfirst['b']=2;
-	myfirst['c']=3;
-
-	mysecond['d']=4;
-	mysecond['e']=5;
-
-	myfirst.swap(mysecond);
-
-	ft::printMap(myfirst);
-	std::cout << "first size: " << myfirst.size() << std::endl;
-	std::cout << std::endl;
-
-	ft::printMap(mysecond);
-	std::cout << "second size: " << mysecond.size() << std::endl;
+	myfirst['b']=3;
 
 	return 0;
 }

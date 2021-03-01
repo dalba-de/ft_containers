@@ -29,9 +29,6 @@ int	main()
 	myfirst[11] = 11;
 	myfirst[18] = 18;
 	myfirst[20] = 20;
-
-	myfirst.clear();
-
 	ft::printMap(myfirst);
 
 	return 0;

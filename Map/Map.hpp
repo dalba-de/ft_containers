@@ -114,7 +114,7 @@ namespace ft
 				return n;
 			}
 
-			node*		search(node* n, key_type k)
+			node*		search(node* n, key_type k) const
 			{
 				if (!n || n->pair.first == k)
 					return n;
@@ -507,7 +507,7 @@ namespace ft
 
 		size_type		count(const key_type& k) const
 		{
-			iterator	it;
+			const_iterator	it;
 
 			it = find(k);
 			if (it != this->end())

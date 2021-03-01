@@ -286,6 +286,8 @@ namespace ft
 
 		iterator				begin()
 		{
+			if (!root)
+				return this->end();
 			return iterator(findMin(root), root);
 		}
 

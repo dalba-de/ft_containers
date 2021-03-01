@@ -144,7 +144,7 @@ namespace ft
 						else if (parent->right == curr)
 							parent->right = nullptr;
 					}
-					delete curr;
+					delete n;
 					return ;
 				}
 				if (!curr->left && curr->right)
@@ -153,6 +153,7 @@ namespace ft
 					{
 						root = root->right;
 						root->parent = nullptr;
+						delete curr;
 						return ;
 					}
 					parent = curr->parent;
@@ -166,7 +167,7 @@ namespace ft
 						parent->right = curr->right;
 						curr->right->parent = parent;
 					}
-					delete curr;
+					delete n;
 					return ;
 				}
 				if (curr->left && !curr->right)
@@ -175,6 +176,7 @@ namespace ft
 					{
 						root = root->left;
 						root->parent = nullptr;
+						delete curr;
 						return ;
 					}
 					parent = curr->parent;
@@ -188,7 +190,7 @@ namespace ft
 						parent->right = curr->left;
 						curr->left->parent = parent;
 					}
-					delete curr;
+					delete n;
 					return ;
 				}
 				if (curr->left && curr->right)
@@ -197,10 +199,12 @@ namespace ft
 					{
 						curr->pair.first =  curr->right->pair.first;
 						curr->pair.second = curr->right->pair.second;
+						node* freep = curr->right;
 						curr->right = curr->right->right;
-						curr->right->parent = curr;
+						if (curr->right)
+							curr->right->parent = curr;
 
-						delete curr;
+						delete freep;
 						return ;
 					}
 					node * 	succ = findMin(curr->right);
@@ -210,8 +214,9 @@ namespace ft
 					curr->pair.second = succ->pair.second;
 
 					succParent->left = succ->right;
-					succ->right->parent = succParent;
-					delete curr;
+					if (succ->right)
+						succ->right->parent = succParent;
+					delete succ;
 					return ;
 				}
 			}
@@ -233,6 +238,13 @@ namespace ft
 			explicit Multimap	(const key_compare& comp = key_compare(),
 								const allocator_type& = allocator_type())
 								: root(nullptr), size_(0), m_comp(comp) {}
+
+/*
+** ------------------------------- DESTRUCTOR --------------------------------
+*/
+
+		~Multimap() { freeMap(root); }
+
 
 /*
 ** --------------------------------- ITERATORS ---------------------------------
@@ -331,6 +343,71 @@ namespace ft
 				insert(*first);
 				first++;
 			}
+		}
+
+		void		erase(iterator position)
+		{
+			node*	aux = position.getNode();
+
+			deleteNode(aux);
+			size_--;
+		}
+
+		size_type	erase(const key_type& k)
+		{
+			iterator	it;
+			int			i = 0;
+
+			while ((it = find(k)) != this->end())
+			{
+				erase(it);
+				i++;
+			}
+			return (i);
+		}
+
+		void		erase(iterator first, iterator last)
+		{
+			iterator	position(first.getNode(), root);
+
+			while (first != last)
+			{
+				position--;
+				erase(first);
+				if (position.getNode() != nullptr)
+					position++;
+				else
+				{
+					if (root)
+						position = this->begin();
+					else
+						position = this->end();
+				}
+					
+				first = position;
+			}
+		}
+
+/*
+** --------------------------------- OPERATIONS ---------------------------------
+*/
+
+		iterator		find(const key_type& k)
+		{
+			node* tmp = search(root, k);
+
+			if (!tmp)
+				return (this->end());
+			return (iterator(tmp));
+		}
+
+		const_iterator	find(const key_type& k) const
+		{
+			node* tmp = search(root, k);
+
+			if (!tmp)
+				return (this->end());
+			return (const_iterator(tmp));
 		}
 
 	};

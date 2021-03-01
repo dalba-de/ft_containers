@@ -505,7 +505,7 @@ namespace ft
 			return (const_iterator(tmp));
 		}
 
-		size_type		count(const key_type& k)
+		size_type		count(const key_type& k) const
 		{
 			iterator	it;
 

@@ -195,10 +195,12 @@ namespace ft
 					{
 						curr->pair.first =  curr->right->pair.first;
 						curr->pair.second = curr->right->pair.second;
+						node*	freep = curr->right;
 						curr->right = curr->right->right;
-						curr->right->parent = curr;
+						if (curr->right)
+							curr->right->parent = curr;
 
-						delete n;
+						delete freep;
 						return ;
 					}
 					node * 	succ = findMin(curr->right);

@@ -223,6 +223,8 @@ namespace ft
 
 			void		freeMap(node* n)
 			{
+				if (!root)
+					return ;
 				if (n->right)
 					freeMap(n->right);
 				if (n->left)
@@ -252,11 +254,15 @@ namespace ft
 
 		iterator				begin()
 		{
+			if (!root)
+				return this->end();
 			return iterator(findMin(root), root);
 		}
 
 		const_iterator			begin() const
 		{
+			if (!root)
+				return this->end();
 			return const_iterator(findMin(root));
 		}
 
@@ -386,6 +392,21 @@ namespace ft
 					
 				first = position;
 			}
+		}
+
+		void		swap(Multimap& x)
+		{
+			ft::swap(size_, x.size_);
+			ft::swap(root, x.root);
+		}
+
+		void		clear()
+		{
+			if (!root)
+				return  ;
+			iterator it = this->begin();
+			while (it != this->end())
+				erase(it++);
 		}
 
 /*

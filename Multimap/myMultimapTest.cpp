@@ -16,9 +16,7 @@ int main()
 	multi.insert(std::pair<int, std::string>(12, "Luxemburgo"));
 	multi.insert(std::pair<int, std::string>(12, "Perú"));
 
-	std::multimap<int, std::string>::iterator it = multi.find(11);
-
-	multi.erase(it, multi.end());
+	multi.clear();
 
 	for (std::multimap<int, std::string>::iterator it = multi.begin(); it != multi.end(); it++)
 		std::cout << it->first << ' ' << it->second << std::endl;
@@ -38,9 +36,7 @@ int main()
 	mymulti.insert(std::pair<int, std::string>(12, "Luxemburgo"));
 	mymulti.insert(std::pair<int, std::string>(12, "Perú"));
 
-	ft::Multimap<int, std::string>::iterator myit = mymulti.find(11);
-
-	mymulti.erase(myit, mymulti.end());
+	mymulti.clear();
 
 	for (ft::Multimap<int, std::string>::iterator myit = mymulti.begin(); myit != mymulti.end(); myit++)
 		std::cout << myit->first << ' ' << myit->second << std::endl;

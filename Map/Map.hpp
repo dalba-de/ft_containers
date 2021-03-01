@@ -142,7 +142,7 @@ namespace ft
 						else if (parent->right == curr)
 							parent->right = nullptr;
 					}
-					delete curr;
+					delete n;
 					return ;
 				}
 				if (!curr->left && curr->right)
@@ -164,7 +164,7 @@ namespace ft
 						parent->right = curr->right;
 						curr->right->parent = parent;
 					}
-					delete curr;
+					delete n;
 					return ;
 				}
 				if (curr->left && !curr->right)
@@ -186,7 +186,7 @@ namespace ft
 						parent->right = curr->left;
 						curr->left->parent = parent;
 					}
-					delete curr;
+					delete n;
 					return ;
 				}
 				if (curr->left && curr->right)
@@ -198,7 +198,7 @@ namespace ft
 						curr->right = curr->right->right;
 						curr->right->parent = curr;
 
-						delete curr;
+						delete n;
 						return ;
 					}
 					node * 	succ = findMin(curr->right);
@@ -208,8 +208,9 @@ namespace ft
 					curr->pair.second = succ->pair.second;
 
 					succParent->left = succ->right;
-					succ->right->parent = succParent;
-					delete curr;
+					if (succ->right)
+						succ->right->parent = succParent;
+					delete succ;
 					return ;
 				}
 			}

@@ -15,32 +15,24 @@ int	main()
 
 	std::cout << "\n\033[1;31m Map Original\n \033[0m" << std::endl;
 
-	std::map<char,int> first;
-	std::map<char,int> second;
 	
-	first['a']=1;
-	first['b']=2;
-	first['c']=3;
-
-	second['d']=4;
-	second['e']=5;
-
-	first.swap(second);
-
-	ft::printoMap(first);
-
-	std::cout<< std::endl;
-
-	ft::printoMap(second);
-
 	std::cout << "\n\033[1;33m My Map\n \033[0m" << std::endl;
 	
-	ft::Map<char, int>	myfirst;
-	//ft::Map<char, int>	mysecond;
+	ft::Map<int, int>	myfirst;
+	myfirst[6] = 6;
+	myfirst[2] = 2;
+	myfirst[1] = 1;
+	myfirst[9] = 9;
+	myfirst[8] = 8;
+	myfirst[15] = 15;
+	myfirst[13] = 13;
+	myfirst[11] = 11;
+	myfirst[18] = 18;
+	myfirst[20] = 20;
 
-	myfirst['a']=1;
-	myfirst['b']=2;
-	myfirst['b']=3;
+	myfirst.erase(18);
+
+	ft::printMap(myfirst);
 
 	return 0;
 }

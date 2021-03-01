@@ -151,6 +151,7 @@ namespace ft
 					{
 						root = root->right;
 						root->parent = nullptr;
+						delete curr;
 						return ;
 					}
 					parent = curr->parent;
@@ -173,6 +174,7 @@ namespace ft
 					{
 						root = root->left;
 						root->parent = nullptr;
+						delete curr;
 						return ;
 					}
 					parent = curr->parent;
@@ -289,7 +291,7 @@ namespace ft
 
 		const_iterator			begin() const
 		{
-			return const_iterator(findMin(root));
+			return const_iterator(findMin(root), root);
 		}
 
 		iterator				end()
@@ -303,7 +305,7 @@ namespace ft
 		const_iterator			end() const
 		{
 			node *	aux = findMax(root);
-			return const_iterator(aux->right);
+			return const_iterator(aux->right, root);
 		}
 
 		reverse_iterator		rbegin()
@@ -429,8 +431,24 @@ namespace ft
 
 		void		erase(iterator first, iterator last)
 		{
+			iterator	position(first.getNode(), root);
+
 			while (first != last)
-				erase(first++);
+			{
+				position--;
+				erase(first);
+				if (position.getNode() != nullptr)
+					position++;
+				else
+				{
+					if (root)
+						position = this->begin();
+					else
+						position = this->end();
+				}
+					
+				first = position;
+			}
 		}
 
 		void		swap(Map& x)

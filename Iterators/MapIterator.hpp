@@ -49,6 +49,8 @@ namespace ft
 
 			pointer		inOrderSuccesor(pointer n)
 			{
+				if (!n)
+					return (findMin(root_));
 				if (n->right != NULL)
 					return findMin(n->right);
 				pointer p = n->parent;

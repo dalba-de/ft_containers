@@ -464,8 +464,8 @@ namespace ft
 			if (!root)
 				return  ;
 			iterator it = this->begin();
-			for ( ; it != this->end(); it++)
-				erase(it);
+			while (it != this->end())
+				erase(it++);
 		}
 
 /*

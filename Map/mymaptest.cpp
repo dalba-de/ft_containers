@@ -22,17 +22,15 @@ int	main()
 	myfirst[6] = 6;
 	myfirst[2] = 2;
 	myfirst[1] = 1;
-	/*myfirst[9] = 9;
+	myfirst[9] = 9;
 	myfirst[8] = 8;
 	myfirst[15] = 15;
 	myfirst[13] = 13;
 	myfirst[11] = 11;
-	myfirst[18] = 18;*/
-	//myfirst[20] = 20;
+	myfirst[18] = 18;
+	myfirst[20] = 20;
 
-	ft::Map<int, int>::iterator myit = myfirst.find(6);
-
-	myfirst.erase(myit, myfirst.end());
+	myfirst.clear();
 
 	ft::printMap(myfirst);
 

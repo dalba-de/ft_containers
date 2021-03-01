@@ -116,7 +116,7 @@ namespace ft
 				return n;
 			}
 
-			node*		search(node* n, key_type k)
+			node*		search(node* n, key_type k) const
 			{
 				if (!n || n->pair.first == k)
 					return n;
@@ -362,7 +362,7 @@ namespace ft
 		size_type	erase(const key_type& k)
 		{
 			iterator	it;
-			int			i = 0;
+			size_type	i = 0;
 
 			while ((it = find(k)) != this->end())
 			{
@@ -410,6 +410,21 @@ namespace ft
 		}
 
 /*
+** --------------------------------- OBSERVERS ---------------------------------
+*/
+
+		key_compare		key_comp() const
+		{
+			return m_comp;
+		}
+
+		value_compare	value_comp() const
+		{
+			return (value_compare(m_comp));
+		}
+
+		
+/*
 ** --------------------------------- OPERATIONS ---------------------------------
 */
 
@@ -429,6 +444,94 @@ namespace ft
 			if (!tmp)
 				return (this->end());
 			return (const_iterator(tmp));
+		}
+
+		size_type		count(const key_type& k) const
+		{
+			size_type	i = 0;
+			const_iterator	it = find(k);
+
+			if (it != this->end())
+			{
+				while (it->first == k)
+				{
+					i++;
+					it++;
+				}
+			}
+			return (i);
+		}
+
+		iterator		lower_bound(const key_type& k)
+		{
+			for (iterator it = this->begin(); it != this->end(); it++)
+			{
+				if (!(m_comp(it->first, k)))
+					return (it);
+			}
+			return (end());
+		}
+
+		const_iterator		lower_bound(const key_type& k) const
+		{
+			for (const_iterator it = this->begin(); it != this->end(); it++)
+			{
+				if (!(m_comp(it->first, k)))
+					return (it);
+			}
+			return (end());
+		}
+
+		iterator		upper_bound(const key_type& k)
+		{
+			for (iterator it = this->begin(); it != this->end(); it++)
+			{
+				if (!(m_comp(it->first, k)))
+				{
+					if (it->first == k)
+					{
+						while (it->first == k)
+							it++;
+					}
+					return (it);
+				}
+			}
+			return (end());
+		}
+
+		const_iterator		upper_bound(const key_type& k) const
+		{
+			for (const_iterator it = this->begin(); it != this->end(); it++)
+			{
+				if (!(m_comp(it->first, k)))
+				{
+					if (it->first == k)
+					{
+						while (it->first == k)
+							it++;
+					}
+					return (it);
+				}
+			}
+			return (end());
+		}
+
+		std::pair<iterator, iterator>	equal_range(const key_type& k)
+		{
+			iterator itlow, itup;
+
+			itlow = lower_bound(k);
+			itup = upper_bound(k);
+			return (std::make_pair(itlow, itup));
+		}
+
+		std::pair<const_iterator, const_iterator>	equal_range(const key_type& k) const
+		{
+			const_iterator itlow, itup;
+
+			itlow = lower_bound(k);
+			itup = upper_bound(k);
+			return (std::make_pair(itlow, itup));
 		}
 
 	};

@@ -26,6 +26,7 @@ namespace ft
 		protected:
 			pointer		node_;
 			pointer		root_;
+			pointer		noSegReturn;
 
 		private:
 
@@ -83,11 +84,11 @@ namespace ft
 
 		public:
 
-			SetIterator() : node_(nullptr), root_(nullptr) {}
+			SetIterator() : node_(nullptr), root_(nullptr), noSegReturn(nullptr) {}
 
-			SetIterator(pointer node) : node_(node), root_(nullptr) {}
+			SetIterator(pointer node) : node_(node), root_(nullptr), noSegReturn(nullptr) {}
 
-			SetIterator(pointer node, pointer root) : node_(node), root_(root) {}
+			SetIterator(pointer node, pointer root) : node_(node), root_(root), noSegReturn(nullptr) {}
 
 			SetIterator(SetIterator const & src) { *this = src; }
 
@@ -95,14 +96,18 @@ namespace ft
 		** ------------------ DESTRUCTOR ------------------
 		*/
 
-			virtual ~SetIterator() {}
+			virtual ~SetIterator()
+			{
+				if (noSegReturn)
+					delete noSegReturn;
+			}
 
 		/*
 		** ------------------ OPERATORS ------------------
 		*/
 
 			SetIterator&	operator=(SetIterator const & rhs)
-			{ this->node_ = rhs.node_; return *this ; }
+			{ this->node_ = rhs.node_; this->noSegReturn = rhs.noSegReturn; return *this ; }
 
 			SetIterator&	operator++()
 			{
@@ -136,7 +141,16 @@ namespace ft
 			bool			operator!=(SetIterator const & rhs)
 			{ return node_ != rhs.node_; }
 
-			value_type&		operator*() { return (node_->data); }
+			value_type&		operator*()
+			{
+				if (!node_)
+				{
+					noSegReturn = new SNode<T>;
+					noSegReturn->data = 0;
+					return (noSegReturn->data);
+				}
+				return (node_->data);
+			}
 
 			value_type*		operator->() { return (&node_->data); }
 

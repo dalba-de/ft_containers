@@ -119,7 +119,7 @@ namespace ft
 				if (!n || n->pair.first == k)
 					return n;
 
-				if (n->pair.first < k)
+				if (m_comp(n->pair.first, k))
 					return search(n->right, k);
 
 				return  search(n->left, k);

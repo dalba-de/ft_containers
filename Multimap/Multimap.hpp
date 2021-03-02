@@ -241,12 +241,43 @@ namespace ft
 								const allocator_type& = allocator_type())
 								: root(nullptr), size_(0), m_comp(comp) {}
 
+			Multimap			(const Multimap& x) : root(nullptr), size_(0)
+			{
+				m_comp = x.key_comp();
+				*this = x;
+				return ;
+			}
+
+			template <class InputIterator>
+			Multimap			(InputIterator first, InputIterator last,
+								const key_compare& = key_compare(),
+								const allocator_type& = allocator_type())
+								: root(nullptr), size_(0)
+			{
+				this->insert(first, last);
+			}
+
 /*
 ** ------------------------------- DESTRUCTOR --------------------------------
 */
 
 		~Multimap() { freeMap(root); }
 
+/*
+** --------------------------------- OVERLOAD ---------------------------------
+*/
+
+		Multimap&		operator=(Multimap const& rhs) 
+		{
+			if (!rhs.empty())
+			{
+				this->clear();
+				this->insert(rhs.begin(), rhs.end());
+			}
+			else
+				this->clear();
+			return *this;
+		}
 
 /*
 ** --------------------------------- ITERATORS ---------------------------------

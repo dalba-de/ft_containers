@@ -66,7 +66,7 @@ void	checkContinue()
 void	modifiersTest()
 {
 	std::cout << RED"Starting modifiers test" << RESET << std::endl;
-	std::cout << ORANGE"\nChecking assign() function:\n" << RESET << std::endl;
+	std::cout << ORANGE"\n\nChecking assign() function:" << RESET << std::endl;
 	int myints[]={1776,7,4};
 	std::list<int> first;
   	std::list<int> second;
@@ -85,6 +85,34 @@ void	modifiersTest()
 	first.assign(second.begin(), second.end());
 	myfirst.assign(mysecond.begin(), mysecond.end());
 	std::cout << GREEN"After reassign. first size: " << first.size() << ". myfirst size: " << myfirst.size() << RESET << std::endl << std::endl;
+	printLists(first, myfirst);
+
+	std::cout << ORANGE"\n\nChecking push_front() function:" << RESET << std::endl;
+	std::cout << BLUE"\nAdd {200, 300} to first:\n" << RESET << std::endl;
+	first.push_front(200);
+	first.push_front(300);
+	myfirst.push_front(200);
+	myfirst.push_front(300);
+	printLists(first, myfirst);
+
+	std::cout << ORANGE"\n\nChecking push_back() function:" << RESET << std::endl;
+	std::cout << BLUE"\nAdd {42, 21} to first:\n" << RESET << std::endl;
+	first.push_back(42);
+	first.push_back(21);
+	myfirst.push_back(42);
+	myfirst.push_back(21);
+	printLists(first, myfirst);
+
+	std::cout << ORANGE"\n\nChecking pop_front() function:" << RESET << std::endl;
+	std::cout << BLUE"\nRemoving from to first:\n" << RESET << std::endl;
+	first.pop_front();
+	myfirst.pop_front();
+	printLists(first, myfirst);
+
+	std::cout << ORANGE"\n\nChecking pop_back() function:" << RESET << std::endl;
+	std::cout << BLUE"\nRemoving back to first:\n" << RESET << std::endl;
+	first.pop_back();
+	myfirst.pop_back();
 	printLists(first, myfirst);
 }
 
@@ -279,10 +307,10 @@ void	constructorTest()
 int main()
 {
 	printBanner();
-	constructorTest();
+	/*constructorTest();
 	iteratorsTest();
 	capacityTest();
-	elementAccessTest();
+	elementAccessTest();*/
 	modifiersTest();
 	
 	return 0;

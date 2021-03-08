@@ -2,3 +2,6 @@ a.out
 .vscode
 pruebas
 *.dSYM
+tester
+*.o
+objects

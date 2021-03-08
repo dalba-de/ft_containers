@@ -82,6 +82,7 @@ namespace ft
 
 			virtual ~Vector()
 			{
+				this->clear();
 				delete [] ptr_;
 			}
 
@@ -89,7 +90,12 @@ namespace ft
 ** --------------------------------- OVERLOAD ---------------------------------
 */
 
-			Vector &		operator=( Vector const & rhs );
+			Vector &		operator=( Vector const & rhs )
+			{
+				this->clear();
+				this->assign(rhs.begin(), rhs.end());
+				return *this;
+			}
 
 /*
 ** --------------------------------- ITERATORS ---------------------------------

@@ -1,7 +1,7 @@
 #include <list>
 #include <cmath>
-#include "../List/List.hpp"
-#include "../Tools/Shared_functions.hpp"
+#include "../includes/List/List.hpp"
+#include "../includes/Tools/Shared_functions.hpp"
 #include "Test.hpp"
 # define RESET		"\033[0m"
 # define RED		"\033[1;31m"

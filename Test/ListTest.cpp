@@ -2,6 +2,7 @@
 #include <cmath>
 #include "../List/List.hpp"
 #include "../Tools/Shared_functions.hpp"
+#include "Test.hpp"
 # define RESET		"\033[0m"
 # define RED		"\033[1;31m"
 # define GREEN		"\033[1;32m"
@@ -152,6 +153,7 @@ void	relationalOperatorsTest()
 	printLists(foo, myfoo);
 	std::cout << BLUE"\nPrint bar: " << std::endl;
 	printLists(bar, mybar);
+	checkContinue();
 }
 
 void	operationsTest()
@@ -689,7 +691,7 @@ void	constructorTest()
 	checkContinue();
 }
 
-int main()
+int testList()
 {
 	printBanner();
 	constructorTest();

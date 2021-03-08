@@ -104,7 +104,7 @@ void	modifiersTest()
 	printLists(first, myfirst);
 
 	std::cout << ORANGE"\n\nChecking pop_front() function:" << RESET << std::endl;
-	std::cout << BLUE"\nRemoving from to first:\n" << RESET << std::endl;
+	std::cout << BLUE"\nRemoving front to first:\n" << RESET << std::endl;
 	first.pop_front();
 	myfirst.pop_front();
 	printLists(first, myfirst);
@@ -114,6 +114,57 @@ void	modifiersTest()
 	first.pop_back();
 	myfirst.pop_back();
 	printLists(first, myfirst);
+
+	std::cout << ORANGE"\n\nChecking insert() function:" << RESET << std::endl;
+	std::cout << BLUE"\nInserting '73' in the second position (single element insert):\n" << RESET << std::endl;
+	std::list<int>::iterator it = first.begin();
+	it++;
+	ft::List<int>::iterator myit = myfirst.begin();
+	myit++;
+	first.insert(it, 73);
+	myfirst.insert(myit, 73);
+	printLists(first, myfirst);
+
+	std::cout << BLUE"\nInserting 2 int of value '20' after '73' (fill insert):\n" << RESET << std::endl;
+	first.insert(it, 2, 20);
+	myfirst.insert(myit, 2, 20);
+	printLists(first, myfirst);
+
+	int myints1[]={1,2,3,4,5};
+	std::cout << BLUE"\nInserting {1,2,3,4,5} in penultimate position (range insert):\n" << RESET << std::endl;
+	it = first.end();
+	it--;
+	myit = myfirst.end();
+	myit--;
+	second.assign(myints1, myints1 + 5);
+	mysecond.assign(myints1, myints1 + 5);
+	first.insert(it, second.begin(), second.end());
+	myfirst.insert(myit, mysecond.begin(), mysecond.end());
+	printLists(first, myfirst);
+
+	std::cout << ORANGE"\n\nChecking erase() function:" << RESET << std::endl;
+	std::cout << BLUE"\nErase second position (single erase):\n" << RESET << std::endl;
+	it = first.begin();
+	it++;
+	myit = myfirst.begin();
+	myit++; 
+	first.erase(it);
+	myfirst.erase(myit);
+	printLists(first, myfirst);
+
+	std::cout << BLUE"\nErase from fourth position to eight position (range erase):\n" << RESET << std::endl;
+	it = first.begin();
+	std::advance(it,4);
+	std::list<int>::iterator it2 = first.begin();
+	std::advance(it2, 8);
+	myit = myfirst.begin();
+	std::advance(myit, 4);
+	ft::List<int>::iterator myit2 = myfirst.begin();
+	std::advance(myit2, 8);
+	first.erase(it, it2);
+	myfirst.erase(myit, myit2);
+	printLists(first, myfirst);
+
 }
 
 void	elementAccessTest()

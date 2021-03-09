@@ -596,21 +596,21 @@ void	constIteratorsTest(const std::list<int>& list, const ft::List<int>& mylist)
 	std::list<int>::const_reverse_iterator rcit = list.rbegin();
 	ft::List<int>::const_reverse_iterator myrcit = mylist.rbegin();
 	std::cout << BLUE"\nIterating from begin() to end() with const iterators:\n" << RESET << std::endl;
-	std::cout << GREEN"In list: \n";
+	std::cout << GREEN"In list: \n" << RESET;
 	for (; cit != list.end(); cit++)
 		std::cout << *cit << ' ';
 	std::cout << RESET << std::endl;
-	std::cout << GREEN"In mylist: \n";
+	std::cout << GREEN"In mylist: \n" << RESET;
 	for (; mycit != mylist.end(); mycit++)
 		std::cout << *mycit << ' ';
 	std::cout << RESET << std::endl;
 
 	std::cout << BLUE"\nIterating from rbegin() to rend() with const iterators:\n" << RESET << std::endl;
-	std::cout << GREEN"In list: \n";
+	std::cout << GREEN"In list: \n" << RESET;
 	for (; rcit != list.rend(); rcit++)
 		std::cout << *rcit << ' ';
 	std::cout << RESET << std::endl;
-	std::cout << GREEN"In mylist: \n";
+	std::cout << GREEN"In mylist: \n" << RESET;
 	for (; myrcit != mylist.rend(); myrcit++)
 		std::cout << *myrcit << ' ';
 	std::cout << RESET << std::endl;
@@ -625,32 +625,32 @@ void	iteratorsTest()
 	std::cout << BLUE"\nCreating list with {16,2,77,29}:\n" << RESET << std::endl;
 	std::list<int>::iterator it = list.begin();
 	ft::List<int>::iterator	myit = mylist.begin();
-	std::cout << GREEN"list begin() points to: " << *it << RESET << std::endl;
-	std::cout << GREEN"mylist begin() points to: " << *myit << RESET << std::endl;
+	std::cout << GREEN"list begin() points to: " << RESET << *it << std::endl;
+	std::cout << GREEN"mylist begin() points to: " << RESET << *myit << std::endl;
 	std::cout << std::endl;
 
 	std::list<int>::reverse_iterator rit = list.rbegin();
 	ft::List<int>::reverse_iterator myrit = mylist.rbegin();
-	std::cout << GREEN"list rbegin() points to: " << *rit << RESET << std::endl;
-	std::cout << GREEN"mylist rbegin() points to: " << *myrit << RESET << std::endl;
+	std::cout << GREEN"list rbegin() points to: " << RESET << *rit << std::endl;
+	std::cout << GREEN"mylist rbegin() points to: " << RESET << *myrit << std::endl;
 	std::cout << std::endl;
 
 	std::cout << BLUE"\nIterating from begin() to end():\n" << RESET << std::endl;
-	std::cout << GREEN"In list: \n";
+	std::cout << GREEN"In list: \n" << RESET;
 	for (; it != list.end(); it++)
 		std::cout << *it << ' ';
 	std::cout << RESET << std::endl;
-	std::cout << GREEN"In mylist: \n";
+	std::cout << GREEN"In mylist: \n" << RESET;
 	for (; myit != mylist.end(); myit++)
 		std::cout << *myit << ' ';
 	std::cout << RESET << std::endl;
 
 	std::cout << BLUE"\nIterating from rbegin() to rend():\n" << RESET << std::endl;
-	std::cout << GREEN"In list: \n";
+	std::cout << GREEN"In list: \n" << RESET;
 	for (; rit != list.rend(); rit++)
 		std::cout << *rit << ' ';
 	std::cout << RESET << std::endl;
-	std::cout << GREEN"In mylist: \n";
+	std::cout << GREEN"In mylist: \n" << RESET;
 	for (; myrit != mylist.rend(); myrit++)
 		std::cout << *myrit << ' ';
 	std::cout << RESET << std::endl;

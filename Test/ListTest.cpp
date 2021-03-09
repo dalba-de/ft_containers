@@ -576,16 +576,11 @@ void	capacityTest()
 	std::cout << ORANGE"\nChecking with std::string: " << RESET << std::endl;
 	std::cout << GREEN"list<std::string> max_size: " << list2.max_size() << RESET << std::endl;
 	std::cout << GREEN"mylist<std::string> max_size: " << mylist2.max_size() << RESET << std::endl;
-	std::list<bool> list3;
-	ft::List<bool> mylist3;
-	std::cout << ORANGE"\nChecking with bool: " << RESET << std::endl;
-	std::cout << GREEN"list<bool> max_size: " << list3.max_size() << RESET << std::endl;
-	std::cout << GREEN"mylist<bool> max_size: " << mylist3.max_size() << RESET << std::endl;
-	std::list<foo*> list4;
-	ft::List<foo*> mylist4;
+	std::list<foo*> list3;
+	ft::List<foo*> mylist3;
 	std::cout << ORANGE"\nChecking with another class: " << RESET << std::endl;
-	std::cout << GREEN"list<foo*> max_size: " << list4.max_size() << RESET << std::endl;
-	std::cout << GREEN"mylist<foo*> max_size: " << mylist4.max_size() << RESET << std::endl;
+	std::cout << GREEN"list<foo*> max_size: " << list3.max_size() << RESET << std::endl;
+	std::cout << GREEN"mylist<foo*> max_size: " << mylist3.max_size() << RESET << std::endl;
 	checkContinue();
 }
 

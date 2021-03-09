@@ -38,7 +38,7 @@ SRC_DIR = Test/
 
 OBJ_DIR = objects/
 
-SRC = Test.cpp ListTest.cpp VectorTest.cpp
+SRC = Test.cpp ListTest.cpp VectorTest.cpp MapTest.cpp
 
 OBJ = $(addprefix ${OBJ_DIR}, ${SRC:.cpp=.o})
 

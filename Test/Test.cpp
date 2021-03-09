@@ -46,9 +46,14 @@ int main()
 			testList();
 			system("clear");
 		}
-		if (input == "V")
+		else if (input == "V")
 		{
 			testVector();
+			system("clear");
+		}
+		else if (input == "M")
+		{
+			testMap();
 			system("clear");
 		}
 		else if(input == "EXIT")

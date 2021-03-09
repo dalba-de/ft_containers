@@ -41,6 +41,7 @@ namespace ft
 			typedef const_iterator self_type;
 			typedef T value_type;
 			typedef T& reference;
+			typedef T const & const_reference;
 			typedef T* pointer;
 			typedef int difference_type;
 			typedef Category iterator_category;
@@ -117,6 +118,7 @@ namespace ft
 		public:
 			typedef typename It::value_type value_type;
 			typedef typename It::reference reference;
+			typedef typename It::const_reference const_reference;
 			typedef typename It::pointer pointer;
 			typedef typename It::iterator_category iterator_category;
 			typedef typename It::difference_type difference_type;
@@ -125,7 +127,8 @@ namespace ft
 			const_reverse_iterator(It const & it) : It(it) { }
 			const_reverse_iterator(const_reverse_iterator const & rhs) : It(rhs.ptr_) { }
 			const_reverse_iterator & operator=(const_reverse_iterator const & rhs) { this->ptr_ = rhs.ptr_; return *this; }
-			reference operator*()
+
+			const_reference operator*() const
 			{
 				It tmp(*this);
 				return (*--tmp);

@@ -514,18 +514,18 @@ void	elementAccessTest()
 	mylist.push_back(77);
 	mylist.push_back(22);
 	std::cout << BLUE"\nCreating list with {77, 22}:\n" << RESET << std::endl;
-	std::cout << GREEN"list front() points to: " << list.front() << RESET << std::endl;
-	std::cout << GREEN"list back() points to: " << list.back() << RESET << std::endl;
+	std::cout << GREEN"list front() points to: " << RESET << list.front() << RESET << std::endl;
+	std::cout << GREEN"list back() points to: " << RESET << list.back() << RESET << std::endl;
 	std::cout << std::endl;
-	std::cout << GREEN"mylist front() points to: " << mylist.front() << RESET << std::endl;
-	std::cout << GREEN"mylist back() points to: " << mylist.back() << RESET << std::endl;
+	std::cout << GREEN"mylist front() points to: " << RESET << mylist.front() << RESET << std::endl;
+	std::cout << GREEN"mylist back() points to: " << RESET << mylist.back() << RESET << std::endl;
 
 	std::cout << BLUE"\nSubtracting back from front:\n" << RESET << std::endl;
 	list.front() -= list.back();
 	mylist.front() -= mylist.back();
 
-	std::cout << GREEN"list.front() is now " << list.front() << '\n' << RESET;
-	std::cout << GREEN"mylist.front() is now " << mylist.front() << '\n' << RESET;
+	std::cout << GREEN"list.front() is now " << RESET << list.front() << '\n' << RESET;
+	std::cout << GREEN"mylist.front() is now " << RESET << mylist.front() << '\n' << RESET;
 	checkContinue();
 }
 

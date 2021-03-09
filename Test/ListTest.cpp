@@ -564,23 +564,23 @@ void	capacityTest()
 		std::cout << GREEN"mylist1 is not empty" << RESET << std::endl;
 
 	std::cout << BLUE"\nChecking size() function:\n" << RESET << std::endl;
-	std::cout << GREEN"list size: " << list.size() << ". list1 size: " << list1.size() << RESET << std::endl;
-	std::cout << GREEN"mylist size: " << mylist.size() << ". mylist1 size: " << mylist1.size() << RESET << std::endl;
+	std::cout << GREEN"list size: " << RESET << list.size() << GREEN". list1 size: " << RESET << list1.size() << RESET << std::endl;
+	std::cout << GREEN"mylist size: " << RESET << mylist.size() << GREEN". mylist1 size: " << RESET << mylist1.size() << RESET << std::endl;
 
 	std::cout << BLUE"\nChecking max_size() function:\n" << RESET << std::endl;
 	std::cout << ORANGE"Checking with int: " << RESET << std::endl;
-	std::cout << GREEN"list<int> max_size: " << list.max_size() << RESET << std::endl;
-	std::cout << GREEN"mylist<int> max_size: " << mylist.max_size() << RESET << std::endl;
+	std::cout << GREEN"list<int> max_size: " << RESET << list.max_size() << RESET << std::endl;
+	std::cout << GREEN"mylist<int> max_size: " << RESET << mylist.max_size() << RESET << std::endl;
 	std::list<std::string> list2;
 	ft::List<std::string> mylist2;
 	std::cout << ORANGE"\nChecking with std::string: " << RESET << std::endl;
-	std::cout << GREEN"list<std::string> max_size: " << list2.max_size() << RESET << std::endl;
-	std::cout << GREEN"mylist<std::string> max_size: " << mylist2.max_size() << RESET << std::endl;
+	std::cout << GREEN"list<std::string> max_size: " << RESET << list2.max_size() << RESET << std::endl;
+	std::cout << GREEN"mylist<std::string> max_size: " << RESET << mylist2.max_size() << RESET << std::endl;
 	std::list<foo*> list3;
 	ft::List<foo*> mylist3;
 	std::cout << ORANGE"\nChecking with another class: " << RESET << std::endl;
-	std::cout << GREEN"list<foo*> max_size: " << list3.max_size() << RESET << std::endl;
-	std::cout << GREEN"mylist<foo*> max_size: " << mylist3.max_size() << RESET << std::endl;
+	std::cout << GREEN"list<foo*> max_size: " << RESET << list3.max_size() << RESET << std::endl;
+	std::cout << GREEN"mylist<foo*> max_size: " << RESET << mylist3.max_size() << RESET << std::endl;
 	checkContinue();
 }
 

@@ -38,7 +38,7 @@ SRC_DIR = Test/
 
 OBJ_DIR = objects/
 
-SRC = Test.cpp ListTest.cpp VectorTest.cpp MapTest.cpp QueueTest.cpp StackTest.cpp
+SRC = Test.cpp ListTest.cpp VectorTest.cpp MapTest.cpp QueueTest.cpp StackTest.cpp MultimapTest.cpp SetTest.cpp
 
 OBJ = $(addprefix ${OBJ_DIR}, ${SRC:.cpp=.o})
 

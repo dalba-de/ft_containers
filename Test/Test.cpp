@@ -24,6 +24,8 @@ void	banner()
 	std::cout << CYAN"|" << std::setw(12) << GREEN << "M" << std::setw(18) << "Map Test" << std::setw(10) << CYAN << "|\n";
 	std::cout << CYAN"|" << std::setw(12) << GREEN << "Q" << std::setw(18) << "Queue Test" << std::setw(10) << CYAN << "|\n";
 	std::cout << CYAN"|" << std::setw(12) << GREEN << "S" << std::setw(18) << "Stack Test" << std::setw(10) << CYAN << "|\n";
+	std::cout << CYAN"|" << std::setw(12) << GREEN << "MM" << std::setw(17) << "Multimap Test" << std::setw(10) << CYAN << "|\n";
+	std::cout << CYAN"|" << std::setw(12) << GREEN << "ST" << std::setw(17) << "Set Test" << std::setw(10) << CYAN << "|\n";
 	std::cout << CYAN"|___________________________|" << std::endl;
 }
 
@@ -64,6 +66,16 @@ int main()
 		else if (input == "S")
 		{
 			testStack();
+			system("clear");
+		}
+		else if (input == "MM")
+		{
+			testMultimap();
+			system("clear");
+		}
+		else if (input == "ST")
+		{
+			testSet();
 			system("clear");
 		}
 		else if(input == "EXIT")

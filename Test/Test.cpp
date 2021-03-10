@@ -56,6 +56,16 @@ int main()
 			testMap();
 			system("clear");
 		}
+		else if (input == "Q")
+		{
+			testQueue();
+			system("clear");
+		}
+		else if (input == "S")
+		{
+			testStack();
+			system("clear");
+		}
 		else if(input == "EXIT")
 			break ;
 		else

@@ -3,6 +3,7 @@
 # include "../List/List.hpp"
 # include "../Vector/Vector.hpp"
 # include "../Map/Map.hpp"
+# include "../Multimap/Multimap.hpp"
 # include <list>
 # include <vector>
 # include <map>
@@ -45,6 +46,16 @@ namespace ft
 			std::cout << it->first << ' ' << it->second << std::endl;
 	};
 
+	template <class key, class T>
+	void	printMultimap(ft::Multimap<key, T> map)
+	{
+		typename ft::Map<key, T>::iterator it;
+
+		it = map.begin();
+		for ( ; it != map.end(); it++)
+			std::cout << it->first << ' ' << it->second << std::endl;
+	};
+
 	template <class T>
 	void	printoList(std::list<T> list)
 	{
@@ -73,6 +84,16 @@ namespace ft
 
 	template <class key, class T>
 	void	printoMap(std::map<key, T> map)
+	{
+		typename std::map<key, T>::iterator it;
+
+		it = map.begin();
+		for ( ; it != map.end(); it++)
+			std::cout << it->first << ' ' << it->second << std::endl;
+	};
+
+	template <class key, class T>
+	void	printoMultimap(std::multimap<key, T> map)
 	{
 		typename std::map<key, T>::iterator it;
 

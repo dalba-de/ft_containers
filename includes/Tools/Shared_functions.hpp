@@ -49,7 +49,7 @@ namespace ft
 	template <class key, class T>
 	void	printMultimap(ft::Multimap<key, T> map)
 	{
-		typename ft::Map<key, T>::iterator it;
+		typename ft::Multimap<key, T>::iterator it;
 
 		it = map.begin();
 		for ( ; it != map.end(); it++)
@@ -63,6 +63,19 @@ namespace ft
 
 		it = list.begin();
 		for (it = list.begin() ; it != list.end(); it++)
+		{
+			std::cout << *it << " ";
+		}
+		std::cout << std::endl;
+	};
+
+	template <class T>
+	void	printSet(ft::Set<T> set)
+	{
+		typename ft::Set<T>::iterator it;
+
+		it = set.begin();
+		for (it = set.begin() ; it != set.end(); it++)
 		{
 			std::cout << *it << " ";
 		}
@@ -95,11 +108,24 @@ namespace ft
 	template <class key, class T>
 	void	printoMultimap(std::multimap<key, T> map)
 	{
-		typename std::map<key, T>::iterator it;
+		typename std::multimap<key, T>::iterator it;
 
 		it = map.begin();
 		for ( ; it != map.end(); it++)
 			std::cout << it->first << ' ' << it->second << std::endl;
+	};
+
+	template <class T>
+	void	printoSet(std::set<T> set)
+	{
+		typename std::set<T>::iterator it;
+
+		it = set.begin();
+		for (it = set.begin() ; it != set.end(); it++)
+		{
+			std::cout << *it << " ";
+		}
+		std::cout << std::endl;
 	};
 }
 

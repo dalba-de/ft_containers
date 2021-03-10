@@ -146,7 +146,7 @@ namespace ft
 				if (!node_)
 				{
 					noSegReturn = new SNode<T>;
-					noSegReturn->data = 0;
+					noSegReturn->data = static_cast<T>(0);
 					return (noSegReturn->data);
 				}
 				return (node_->data);

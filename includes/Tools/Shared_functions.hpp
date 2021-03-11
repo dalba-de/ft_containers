@@ -4,9 +4,12 @@
 # include "../Vector/Vector.hpp"
 # include "../Map/Map.hpp"
 # include "../Multimap/Multimap.hpp"
+# include "../Set/Set.hpp"
+# include "../Multiset/Multiset.hpp"
 # include <list>
 # include <vector>
 # include <map>
+# include <set>
 
 namespace ft
 {
@@ -83,6 +86,19 @@ namespace ft
 	};
 
 	template <class T>
+	void	printMultiset(ft::Multiset<T> set)
+	{
+		typename ft::Multiset<T>::iterator it;
+
+		it = set.begin();
+		for (it = set.begin() ; it != set.end(); it++)
+		{
+			std::cout << *it << " ";
+		}
+		std::cout << std::endl;
+	};
+
+	template <class T>
 	void	printoVector(std::vector<T> vector)
 	{
 		typename std::vector<T>::iterator it;
@@ -119,6 +135,19 @@ namespace ft
 	void	printoSet(std::set<T> set)
 	{
 		typename std::set<T>::iterator it;
+
+		it = set.begin();
+		for (it = set.begin() ; it != set.end(); it++)
+		{
+			std::cout << *it << " ";
+		}
+		std::cout << std::endl;
+	};
+
+	template <class T>
+	void	printomMultiset(std::multiset<T> set)
+	{
+		typename std::multiset<T>::iterator it;
 
 		it = set.begin();
 		for (it = set.begin() ; it != set.end(); it++)

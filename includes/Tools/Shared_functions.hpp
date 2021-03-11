@@ -145,7 +145,7 @@ namespace ft
 	};
 
 	template <class T>
-	void	printomMultiset(std::multiset<T> set)
+	void	printoMultiset(std::multiset<T> set)
 	{
 		typename std::multiset<T>::iterator it;
 

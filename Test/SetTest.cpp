@@ -43,12 +43,12 @@ void	printsetBanner()
 {
 	system("clear");
 	printf(CYAN"\n\n \
-			\t\t\t\t\t\t████  ████╗   ██═╗  ███████═╗ ████████╗███████╗███████╗████████╗\n \
-			\t\t\t\t\t\t██╔████═██║  ████╚╗ ██╔═══██║ ╚══██╔══╝██╔════╝██╔════╝╚══██╔══╝\n \
-			\t\t\t\t\t\t██║ ██  ██║ ██╔═██╚╗███████═╝    ██║   █████╗  ███████╗   ██║\n \
-			\t\t\t\t\t\t██║     ██║████████║██║          ██║   ██╔══╝  ╚════██║   ██║\n \
-			\t\t\t\t\t\t██║     ██║██╔═══██║██║          ██║   ███████╗███████║   ██║\n \
-			\t\t\t\t\t\t╚═╝     ╚═╝╚═╝   ╚═╝╚═╝          ╚═╝   ╚══════╝╚══════╝   ╚═╝\n \
+			\t\t\t\t\t\t███████╗███████╗████████╗ ████████╗███████╗███████╗████████╗\n \
+			\t\t\t\t\t\t██╔════╝██╔════╝╚══██╔══╝ ╚══██╔══╝██╔════╝██╔════╝╚══██╔══╝\n \
+			\t\t\t\t\t\t███████╗█████╗     ██║       ██║   █████╗  ███████╗   ██║\n \
+			\t\t\t\t\t\t╚════██║██╔══╝     ██║       ██║   ██╔══╝  ╚════██║   ██║\n \
+			\t\t\t\t\t\t███████║███████╗   ██║       ██║   ███████╗███████║   ██║\n \
+			\t\t\t\t\t\t╚══════╝╚══════╝   ╚═╝       ╚═╝   ╚══════╝╚══════╝   ╚═╝\n \
 					\t\t\t\t\t\tby dalba-de			\n\n\033[0m");
 }
 
@@ -70,21 +70,21 @@ struct cmpByStringLength {
     }
 };
 
-/*void	setRelationalOperatorsTest()
+void	setRelationalOperatorsTest()
 {
 	std::cout << RED"Starting relational operators test" << RESET << std::endl;
 	std::cout << BLUE"\nCreating sets foo and bar:\n" << RESET << std::endl;
-	std::set<char,int> foo,bar;
-	foo['a']=100;
-	foo['b']=200;
-	bar['a']=10;
-	bar['z']=1000;
+	std::set<int> foo,bar;
+	foo.insert(100);
+	foo.insert(200);
+	bar.insert(10);
+	bar.insert(1000);
 
-	ft::Set<char,int> myfoo,mybar;
-	myfoo['a']=100;
-	myfoo['b']=200;
-	mybar['a']=10;
-	mybar['z']=1000;
+	ft::Set<int> myfoo,mybar;
+	myfoo.insert(100);
+	myfoo.insert(200);
+	mybar.insert(10);
+	mybar.insert(1000);
 	std::cout << BLUE"\nPrint foo:\n" << RESET << std::endl;
 	printsets(foo, myfoo);
 	std::cout << BLUE"\nPrint bar:\n" << RESET << std::endl;
@@ -121,171 +121,126 @@ void	setOperationsTest()
 {
 	std::cout << RED"Starting operations test" << RESET << std::endl;
 	std::cout << ORANGE"\nChecking find() function:" << RESET << std::endl;
-	std::cout << BLUE"\nCreate set<char, int> and insert single values:\n" << RESET << std::endl;
-	std::set<char,int> set;
-	std::set<char,int>::iterator it;
-	set['a']=50;
-	set['b']=100;
-	set['c']=150;
-	set['d']=200;
+	std::cout << BLUE"\nCreate set<int> and insert single values:\n" << RESET << std::endl;
+	int myints[]= {10,20,30,40,50};
+	std::set<int> set(myints, myints + 5);
+	std::set<int>::iterator it;
 
-	ft::Set<char,int> myset;
-	ft::Set<char,int>::iterator myit;
-
-	myset['a']=50;
-	myset['b']=100;
-	myset['c']=150;
-	myset['d']=200;
+	ft::Set<int> myset(myints, myints + 5);
+	ft::Set<int>::iterator myit;
 
 	printsets(set, myset);
 
-	std::cout << BLUE"\nFind 'b' with function and erase it:\n" << RESET << std::endl;
+	std::cout << BLUE"\nFind '20' with function and erase it:\n" << RESET << std::endl;
 
-	it = set.find('b');
+	it = set.find(20);
 	if (it != set.end())
 		set.erase (it);
-	myit = myset.find('b');
+	myit = myset.find(20);
 	if (myit != myset.end())
 		myset.erase (myit);
 	printsets(set, myset);
 
 	std::cout << ORANGE"\nChecking count() function:" << RESET << std::endl;
 	std::cout << BLUE"\nUse count to find elements in set:\n" << RESET << std::endl;
-	if (set.count('f'))
-		std::cout << GREEN"'f' is an element of set" << std::endl;
+	if (set.count(25))
+		std::cout << GREEN"'25' is an element of set" << std::endl;
 	else
-		std::cout << GREEN"'f' is not an element of set" << std::endl << std::endl;
-	if (myset.count('f'))
-		std::cout << GREEN"'f' is an element of myset" << std::endl;
+		std::cout << GREEN"'25' is not an element of set" << std::endl << std::endl;
+	if (myset.count(25))
+		std::cout << GREEN"'25' is an element of myset" << std::endl;
 	else
-		std::cout << GREEN"'f' is not an element of myset" << std::endl << std::endl;
+		std::cout << GREEN"'25' is not an element of myset" << std::endl << std::endl;
 
-	if (set.count('c'))
-		std::cout << GREEN"'c' is an element of set" << std::endl << std::endl;
+	if (set.count(30))
+		std::cout << GREEN"'30' is an element of set" << std::endl << std::endl;
 	else
-		std::cout << GREEN"'c' is not an element of set" << std::endl << std::endl;
-	if (myset.count('c'))
-		std::cout << GREEN"'c' is an element of myset" << std::endl;
+		std::cout << GREEN"'30' is not an element of set" << std::endl << std::endl;
+	if (myset.count(30))
+		std::cout << GREEN"'30' is an element of myset" << std::endl;
 	else
-		std::cout << GREEN"'c' is not an element of myset" << std::endl;
+		std::cout << GREEN"'30' is not an element of myset" << std::endl;
 
 	std::cout << ORANGE"\nChecking upper_bound() and lowe_bound functions:" << RESET << std::endl;
 	std::cout << BLUE"\nInserting some new elements in set:\n" << RESET << std::endl;
-	set['b']=100;
-	set['e']=250;
-	set['f']=300;
-	myset['b']=100;
-	myset['e']=250;
-	myset['f']=300;
+	set.insert(20);
+	set.insert(60);
+	myset.insert(20);
+	myset.insert(60);
 	printsets(set, myset);
 
-	std::cout << BLUE"\nUse functions to erase from 'b' to 'd':\n" << RESET << std::endl;
-	std::set<char, int>::iterator itlow, itup;
-	ft::Set<char, int>::iterator myitlow, myitup;
+	std::cout << BLUE"\nUse functions to erase from '20' to '40':\n" << RESET << std::endl;
+	std::set<int>::iterator itlow, itup;
+	ft::Set<int>::iterator myitlow, myitup;
 
-	itlow = set.lower_bound('b');
-	itup = set.upper_bound('d');
+	itlow = set.lower_bound(20);
+	itup = set.upper_bound(40);
 	set.erase(itlow, itup);
-	myitlow = myset.lower_bound('b');
-	myitup = myset.upper_bound('d');
+	myitlow = myset.lower_bound(20);
+	myitup = myset.upper_bound(40);
 	myset.erase(myitlow, myitup);
 	printsets(set, myset);
 
-	std::cout << ORANGE"\nChecking upper_bound() and lowe_bound functions:" << RESET << std::endl;
-	std::cout << BLUE"\nChecking upper and lower range with 'e':\n" << RESET << std::endl;
-	std::pair<std::set<char,int>::iterator,std::set<char,int>::iterator> ret;
-	std::pair<ft::Set<char,int>::iterator,ft::Set<char,int>::iterator> myret;
+	std::cout << ORANGE"\nChecking upper_bound() and lower_bound functions:" << RESET << std::endl;
+	std::cout << BLUE"\nChecking upper and lower range with '50':\n" << RESET << std::endl;
+	std::pair<std::set<int>::iterator,std::set<int>::iterator> ret;
+	std::pair<ft::Set<int>::iterator,ft::Set<int>::iterator> myret;
 
-	ret = set.equal_range('e');
-	myret = myset.equal_range('e');
+	ret = set.equal_range(50);
+	myret = myset.equal_range(50);
 
 	std::cout << GREEN"In set lower bound points to: " << RESET;
-	std::cout << ret.first->first << " => " << ret.first->second << '\n';
+	std::cout << *ret.first << '\n';
 
 	std::cout << GREEN"In set upper bound points to: " << RESET;
-	std::cout << ret.second->first << " => " << ret.second->second << '\n';
+	std::cout << *ret.second << '\n';
 
 	std::cout << GREEN"In myset lower bound points to: " << RESET;
-	std::cout << myret.first->first << " => " << myret.first->second << '\n';
+	std::cout << *myret.first << '\n';
 
 	std::cout << GREEN"In myset upper bound points to: " << RESET;
-	std::cout << myret.second->first << " => " << myret.second->second << '\n';
+	std::cout << *myret.second << '\n';
 	checksetContinue();
 }
 
 void	setObserversTest()
 {
 	std::cout << RED"Starting observers test" << RESET << std::endl;
-	std::cout << ORANGE"\nChecking key_comp() function:" << RESET << std::endl << std::endl;
-	std::set<char,int> set;
+	std::cout << ORANGE"\nChecking key_comp() anda value_comp() functions:" << RESET << std::endl << std::endl;
+	std::set<int> set;
 
-	std::set<char,int>::key_compare comp = set.key_comp();
+	std::set<int>::key_compare comp = set.key_comp();
 
-	set['a']=100;
-	set['b']=200;
-	set['c']=300;
+	for (int i=0; i<=5; i++) set.insert(i);
 
 	std::cout << GREEN"set contains:\n" << RESET;
 
-	char highest = set.rbegin()->first;
+	char highest = *set.rbegin();
 
-	std::set<char,int>::iterator it = set.begin();
+	std::set<int>::iterator it = set.begin();
 	do {
-		std::cout << it->first << " => " << it->second << '\n';
-	} while ( comp((*it++).first, highest) );
+		std::cout << *it << '\n';
+	} while ( comp(*(++it), highest) );
 
 	std::cout << '\n';
 
-	ft::Set<char,int> myset;
+	ft::Set<int> myset;
 
-	ft::Set<char,int>::key_compare mycomp = myset.key_comp();
+	ft::Set<int>::key_compare mycomp = myset.key_comp();
 
-	myset['a']=100;
-	myset['b']=200;
-	myset['c']=300;
+	for (int i=0; i<=5; i++) myset.insert(i);
 
 	std::cout << GREEN"myset contains:\n" << RESET;
 
-	highest = myset.rbegin()->first;
+	highest = *myset.rbegin();
 
-	ft::Set<char,int>::iterator myit = myset.begin();
+	ft::Set<int>::iterator myit = myset.begin();
 	do {
-		std::cout << myit->first << " => " << myit->second << '\n';
-	} while ( mycomp((*myit++).first, highest) );
+		std::cout << *myit << '\n';
+	} while ( mycomp(*(++myit), highest) );
 
 	std::cout << '\n';
 
-	std::cout << ORANGE"\nChecking value_comp() function:" << RESET << std::endl << std::endl;
-
-	std::set<char,int> set1;
-
-	set1['x']=1001;
-	set1['y']=2002;
-	set1['z']=3003;
-
-	std::cout << GREEN"set1 contains:\n" << RESET;
-
-	std::pair<char,int> highest1 = *set1.rbegin();
-
-	std::set<char,int>::iterator it1 = set1.begin();
-	do {
-		std::cout << it1->first << " => " << it1->second << '\n';
-	} while ( set1.value_comp()(*it1++, highest1) );
-
-	ft::Set<char,int> myset1;
-
-	myset1['x']=1001;
-	myset1['y']=2002;
-	myset1['z']=3003;
-
-	std::cout << GREEN"\nmyset1 contains:\n" << RESET;
-
-	highest1 = *myset1.rbegin();
-
-	ft::Set<char,int>::iterator myit1 = myset1.begin();
-	do {
-		std::cout << myit1->first << " => " << myit1->second << '\n';
-	} while ( myset1.value_comp()(*myit1++, highest1) );
 	checksetContinue();
 }
 
@@ -293,52 +248,53 @@ void	setModifiersTest()
 {
 	std::cout << RED"Starting modifiers test" << RESET << std::endl;
 	std::cout << ORANGE"\n\nChecking insert() function:" << RESET << std::endl;
-	std::cout << BLUE"\nCreate set<int, string> and insert single values:\n" << RESET << std::endl;
-	std::set<int, std::string>	set;
-	ft::Set<int, std::string>	myset;
+	std::cout << BLUE"\nCreate set<int> and insert single values:\n" << RESET << std::endl;
+	std::set<int>	set;
+	ft::Set<int>	myset;
 
 	std::cout << std::boolalpha;
-	set.insert(std::pair<int, std::string>(6, "París"));
-	set.insert(std::pair<int, std::string>(2, "Roma"));
-	set.insert(std::pair<int, std::string>(1, "Luxemburgo"));
-	set.insert(std::pair<int, std::string>(9, "Oslo"));
-	set.insert(std::pair<int, std::string>(8, "Munich"));
-	set.insert(std::pair<int, std::string>(15, "Lisboa"));
-	set.insert(std::pair<int, std::string>(13, "Londres"));
-	set.insert(std::pair<int, std::string>(11, "Praga"));
-	std::cout << GREEN"Trying to insert new value in set: " << RESET << (set.insert(std::pair<int, std::string>(18, "Madrid"))).second << std::endl;
+	set.insert(6);
+	set.insert(2);
+	set.insert(1);
+	set.insert(9);
+	set.insert(8);
+	set.insert(15);
+	set.insert(13);
+	set.insert(11);
+	std::cout << GREEN"Trying to insert new value in map: " << RESET << set.insert(18).second << std::endl;
 
-	myset.insert(std::pair<int, std::string>(6, "París"));
-	myset.insert(std::pair<int, std::string>(2, "Roma"));
-	myset.insert(std::pair<int, std::string>(1, "Luxemburgo"));
-	myset.insert(std::pair<int, std::string>(9, "Oslo"));
-	myset.insert(std::pair<int, std::string>(8, "Munich"));
-	myset.insert(std::pair<int, std::string>(15, "Lisboa"));
-	myset.insert(std::pair<int, std::string>(13, "Londres"));
-	myset.insert(std::pair<int, std::string>(11, "Praga"));
-	std::cout << GREEN"Trying to insert new value in myset: " << RESET << (myset.insert(std::pair<int, std::string>(18, "Madrid"))).second << std::endl;
+	myset.insert(6);
+	myset.insert(2);
+	myset.insert(1);
+	myset.insert(9);
+	myset.insert(8);
+	myset.insert(15);
+	myset.insert(13);
+	myset.insert(11);
+	std::cout << GREEN"Trying to insert new value in map: " << RESET << myset.insert(18).second << std::endl;
 
-	std::cout << GREEN"\ntrying to insert already known value in set: " << RESET << (set.insert(std::pair<int, std::string>(11, "Murcia"))).second << std::endl;
-	std::cout << GREEN"trying to insert already known value in set: " << RESET << (myset.insert(std::pair<int, std::string>(11, "Murcia"))).second << std::endl << std::endl;
+	
+	std::cout << GREEN"\ntrying to insert already known value in set: " << RESET << (set.insert(11)).second << std::endl;
+	std::cout << GREEN"trying to insert already known value in set: " << RESET << (myset.insert(11)).second << std::endl << std::endl;
 	printsets(set, myset);
 
 	std::cout << BLUE"\nInsert new value with hint (max efficiency):\n" << RESET << std::endl;
-	std::set<int, std::string>::iterator it = set.find(18);
-	ft::Set<int, std::string>::iterator myit = myset.find(18);
-	set.insert(it, std::pair<int, std::string>(20, "Moscú"));
-	myset.insert(myit, std::pair<int, std::string>(20, "Moscú"));
+	std::set<int>::iterator it = set.find(18);
+	ft::Set<int>::iterator myit = myset.find(18);
+	set.insert(it, (20));
+	myset.insert(myit, (20));
 	printsets(set, myset);
 
 	std::cout << BLUE"\nInsert new value with hint (no max efficiency):\n" << RESET << std::endl;
 	it = set.find(6);
 	myit = myset.find(6);
-	set.insert(it, std::pair<int, std::string>(12, "Dublin"));
-	myset.insert(myit, std::pair<int, std::string>(12, "Dublin"));
+	set.insert(it, (12));
+	myset.insert(myit, (12));
 	printsets(set, myset);
 
 	std::cout << BLUE"\nCreate new set with range insert:\n" << RESET << std::endl;
-	std::set<int, std::string>	anotherset;
-	ft::Set<int, std::string>	myanotherset;
+	std::set<int>	anotherset;
+	ft::Set<int>	myanotherset;
 	anotherset.insert(set.begin(), set.find(13));
 	myanotherset.insert(myset.begin(), myset.find(13));
 	printsets(anotherset, myanotherset);
@@ -385,20 +341,20 @@ void	setModifiersTest()
 	printsets(set, myset);
 
 	std::cout << BLUE"\nErase with range anotherset:\n" << RESET << std::endl;
-	std::set<int, std::string>::iterator bit = anotherset.begin();
-	std::set<int, std::string>::iterator eit = anotherset.end();
+	std::set<int>::iterator bit = anotherset.begin();
+	std::set<int>::iterator eit = anotherset.end();
 	anotherset.erase(bit, eit);
-	ft::Set<int, std::string>::iterator mybit = myanotherset.begin();
-	ft::Set<int, std::string>::iterator myeit = myanotherset.end();
+	ft::Set<int>::iterator mybit = myanotherset.begin();
+	ft::Set<int>::iterator myeit = myanotherset.end();
 	myanotherset.erase(mybit, myeit);
 	printsets(anotherset, myanotherset);
 
 	std::cout << ORANGE"\n\nChecking erase() function:" << RESET << std::endl;
 	std::cout << BLUE"\nInsert some values in anotherset and swap with set:\n" << RESET << std::endl;
-	anotherset.insert(std::pair<int, std::string>(42, "Madrid"));
-	anotherset.insert(std::pair<int, std::string>(43, "Urduliz"));
-	myanotherset.insert(std::pair<int, std::string>(42, "Madrid"));
-	myanotherset.insert(std::pair<int, std::string>(43, "Urduliz"));
+	anotherset.insert((42));
+	anotherset.insert((43));
+	myanotherset.insert((42));
+	myanotherset.insert((43));
 	std::cout << BLUE"\nPrint set before swap:\n" << RESET << std::endl;
 	printsets(set, myset);
 	std::cout << BLUE"\nPrint anotherset before swap:\n" << RESET << std::endl;
@@ -418,56 +374,15 @@ void	setModifiersTest()
 	checksetContinue();
 }
 
-void	setElementAccessTest()
-{
-	std::cout << RED"Starting element access test" << RESET << std::endl;
-	std::cout << ORANGE"\n\nChecking operator[]:" << RESET << std::endl;
-	std::cout << BLUE"\nCreating set<char, std::string>:\n" << RESET << std::endl;
-
-	std::set<char,std::string> set;
-
-	set['a']="an element";
-	set['b']="another element";
-	set['c']=set['b'];
-
-	std::cout << GREEN"set['a'] is " << set['a'] << '\n';
-	std::cout << "set['b'] is " << set['b'] << '\n';
-	std::cout << "set['c'] is " << set['c'] << '\n';
-	std::cout << "set['d'] is " << set['d'] << '\n';
-
-	std::cout << std::endl;
-	std::cout << GREEN"set now contains " << RESET << set.size() << GREEN" elements.\n" << RESET;
-	std::cout << std::endl;
-
-	ft::Set<char,std::string> myset;
-	myset['a']="an element";
-	myset['b']="another element";
-	myset['c']=myset['b'];
-
-	std::cout << GREEN"myset['a'] is " << myset['a'] << '\n';
-	std::cout << "myset['b'] is " << myset['b'] << '\n';
-	std::cout << "myset['c'] is " << myset['c'] << '\n';
-	std::cout << "myset['d'] is " << myset['d'] << '\n';
-
-	std::cout << std::endl;
-	std::cout << GREEN"myset now contains " << RESET << myset.size() << GREEN" elements.\n" << RESET;
-	std::cout << std::endl;
-}
-
 void	setCapacityTest()
 {
 	std::cout << RED"Starting capacity test" << RESET << std::endl;
-	std::set<char, int>	set;
-	ft::Set<char, int>	myset;
-	std::set<char, int>	set1;
-	ft::Set<char, int>	myset1;
-	std::cout << BLUE"\nCreating set<char, int> with some values and empty set1:\n" << RESET << std::endl;
-	set['b'] = 100;
-	set['a'] = 200;
-	set['c'] = 300;
-	myset['b'] = 100;
-	myset['a'] = 200;
-	myset['c'] = 300;
+	int myints[]= {10,20,30,40,50};
+	std::set<int>	set(myints, myints + 5);
+	ft::Set<int>	myset(myints, myints + 5);
+	std::set<int>	set1;
+	ft::Set<int>	myset1;
+	std::cout << BLUE"\nCreating set<int> with some values and empty set1:\n" << RESET << std::endl;
 	std::cout << "\n\033[1;33mPrinting filled list:\n" << RESET << std::endl;
 	printsets(set, myset);
 	std::cout << "\n\033[1;33mPrinting empty list:\n" << RESET << std::endl;
@@ -501,95 +416,90 @@ void	setCapacityTest()
 	std::cout << ORANGE"Checking with <char,int>: " << RESET << std::endl;
 	std::cout << GREEN"set<char, int> max_size: " << RESET << set.max_size() << RESET << std::endl;
 	std::cout << GREEN"myset<char, int> max_size: " << RESET << myset.max_size() << RESET << std::endl;
-	std::set<std::string, int> set2;
-	ft::Set<std::string, int> myset2;
+	std::set<std::string> set2;
+	ft::Set<std::string> myset2;
 	std::cout << ORANGE"\nChecking with std::string: " << RESET << std::endl;
-	std::cout << GREEN"set<std::string, int> max_size: " << RESET << set2.max_size() << RESET << std::endl;
-	std::cout << GREEN"myset<std::string, int> max_size: " << RESET << myset2.max_size() << RESET << std::endl;
-	std::set<setfoo*, int> set3;
-	ft::Set<setfoo*, int> myset3;
+	std::cout << GREEN"set<std::string> max_size: " << RESET << set2.max_size() << RESET << std::endl;
+	std::cout << GREEN"myset<std::string> max_size: " << RESET << myset2.max_size() << RESET << std::endl;
+	std::set<setfoo*> set3;
+	ft::Set<setfoo*> myset3;
 	std::cout << ORANGE"\nChecking with another class: " << RESET << std::endl;
-	std::cout << GREEN"set<foo*, int> max_size: " << RESET << set3.max_size() << RESET << std::endl;
-	std::cout << GREEN"myset<foo*, int> max_size: " << RESET << myset3.max_size() << RESET << std::endl;
+	std::cout << GREEN"set<foo*> max_size: " << RESET << set3.max_size() << RESET << std::endl;
+	std::cout << GREEN"myset<foo*> max_size: " << RESET << myset3.max_size() << RESET << std::endl;
 	checksetContinue();
 }
 
-void	constsetIteratorsTest(const std::set<char, int>& set, const ft::Set<char, int>& myset)
+void	constsetIteratorsTest(const std::set<int>& set, const ft::Set<int>& myset)
 {
-	std::set<char,int>::const_iterator cit = set.begin();
-	ft::Set<char, int>::const_iterator mycit = myset.begin();
-	std::set<char, int>::const_reverse_iterator rcit = set.rbegin();
-	ft::Set<char, int>::const_reverse_iterator myrcit = myset.rbegin();
+	std::set<int>::const_iterator cit = set.begin();
+	ft::Set<int>::const_iterator mycit = myset.begin();
+	std::set<int>::const_reverse_iterator rcit = set.rbegin();
+	ft::Set<int>::const_reverse_iterator myrcit = myset.rbegin();
 	std::cout << BLUE"\nIterating from begin() to end() with const iterators:\n" << RESET << std::endl;
 	std::cout << GREEN"In vector: \n" << RESET;
 	for (; cit != set.end(); cit++)
-		std::cout << cit->first << ' ';
+		std::cout << *cit << ' ';
 	std::cout << RESET << std::endl;
 	std::cout << GREEN"In myvector: \n" << RESET;
 	for (; mycit != myset.end(); mycit++)
-		std::cout << mycit->first << ' ';
+		std::cout << *mycit << ' ';
 	std::cout << RESET << std::endl;
 
 	std::cout << BLUE"\nIterating from rbegin() to rend() with const iterators:\n" << RESET << std::endl;
 	std::cout << GREEN"In set: \n" << RESET;
 	for (; rcit != set.rend(); rcit++)
-		std::cout << rcit->first << ' ';
+		std::cout << *rcit << ' ';
 	std::cout << RESET << std::endl;
 	std::cout << GREEN"In myset: \n" << RESET;
 	for (; myrcit != myset.rend(); myrcit++)
-		std::cout << myrcit->first << ' ';
+		std::cout << *myrcit << ' ';
 	std::cout << RESET << std::endl;
 }
 
 void	setIteratorsTest()
 {
 	std::cout << RED"Starting iterators test" << RESET << std::endl;
-	std::set<char, int>	set;
-	ft::Set<char, int>	myset;
-	std::cout << BLUE"\nCreating set<char, int> with some values:\n" << RESET << std::endl;
-	set['b'] = 100;
-	set['a'] = 200;
-	set['c'] = 300;
-	myset['b'] = 100;
-	myset['a'] = 200;
-	myset['c'] = 300;
+	std::cout << BLUE"\nCreating set<int> with some values:\n" << RESET << std::endl;
+	int myints[]= {10,20,30,40,50};
+	std::set<int> set(myints, myints + 5);
+	ft::Set<int> myset(myints, myints + 5);
 
-	std::set<char, int>::iterator it = set.begin();
-	ft::Set<char, int>::iterator myit = myset.begin();
-	std::cout << GREEN"set begin() points to: " << RESET << it->first << std::endl;
-	std::cout << GREEN"myset begin() points to: " << RESET << myit->first << std::endl;
+	std::set<int>::iterator it = set.begin();
+	ft::Set<int>::iterator myit = myset.begin();
+	std::cout << GREEN"set begin() points to: " << RESET << *it << std::endl;
+	std::cout << GREEN"myset begin() points to: " << RESET << *myit << std::endl;
 	std::cout << std::endl;
 
-	std::set<char, int>::reverse_iterator rit = set.rbegin();
-	ft::Set<char, int>::reverse_iterator myrit = myset.rbegin();
-	std::cout << GREEN"set rbegin() points to: " << RESET << rit->first << std::endl;
-	std::cout << GREEN"myset rbegin() points to: " << RESET << myrit->first << std::endl;
+	std::set<int>::reverse_iterator rit = set.rbegin();
+	ft::Set<int>::reverse_iterator myrit = myset.rbegin();
+	std::cout << GREEN"set rbegin() points to: " << RESET << *rit << std::endl;
+	std::cout << GREEN"myset rbegin() points to: " << RESET << *myrit << std::endl;
 	std::cout << std::endl;
 
 	std::cout << BLUE"\nIterating from begin() to end():\n" << RESET << std::endl;
 	std::cout << GREEN"In vector: \n" << RESET;
 	for (; it != set.end(); it++)
-		std::cout << it->first << ' ';
+		std::cout << *it << ' ';
 	std::cout << RESET << std::endl;
 	std::cout << GREEN"In myvector: \n" << RESET;
 	for (; myit != myset.end(); myit++)
-		std::cout << myit->first << ' ';
+		std::cout << *myit << ' ';
 	std::cout << RESET << std::endl;
 
 	std::cout << BLUE"\nIterating from rbegin() to rend():\n" << RESET << std::endl;
 	std::cout << GREEN"In vector: \n" << RESET;
 	for (; rit != set.rend(); rit++)
-		std::cout << rit->first << ' ';
+		std::cout << *rit << ' ';
 	std::cout << RESET << std::endl;
 	std::cout << GREEN"In myvector: \n" << RESET;
 	for (; myrit != myset.rend(); myrit++)
-		std::cout << myrit->first << ' ';
+		std::cout << *myrit << ' ';
 	std::cout << RESET << std::endl;
 
 	std::cout << BLUE"\nTrying with const iterators:\n" << RESET << std::endl;
 	constsetIteratorsTest(set, myset);
 	checksetContinue();
-}*/
+}
 
 void	setConstructorsTest()
 {
@@ -644,17 +554,16 @@ void	setConstructorsTest()
 	checksetContinue();	
 }
 
-int /*testSet()*/main()
+int testSet()
 {
 	printsetBanner();
 	setConstructorsTest();
-	/*setIteratorsTest();
+	setIteratorsTest();
 	setCapacityTest();
-	setElementAccessTest();
 	setModifiersTest();
 	setObserversTest();
 	setOperationsTest();
-	setRelationalOperatorsTest();*/
+	setRelationalOperatorsTest();
 	
 	return 0;
 }

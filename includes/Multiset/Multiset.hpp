@@ -1,5 +1,5 @@
-#ifndef	SET_HPP
-# define SET_HPP
+#ifndef	MULTISET_HPP
+# define MULTISET_HPP
 # include <iostream>
 # include <memory>
 # include <limits>
@@ -224,7 +224,7 @@ namespace ft
 								const allocator_type& = allocator_type())
 								: root(nullptr), size_(0), m_comp(comp) {}
 
-			Multiset			(const Multiset & x)
+			Multiset			(const Multiset & x) : root(nullptr), size_(0)
 			{
 				m_comp = x.key_comp();
 				*this = x;
@@ -404,7 +404,7 @@ namespace ft
 			}
 		}
 
-		void		swap(Multimap& x)
+		void		swap(Multiset& x)
 		{
 			ft::swap(size_, x.size_);
 			ft::swap(root, x.root);

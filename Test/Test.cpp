@@ -26,6 +26,7 @@ void	banner()
 	std::cout << CYAN"|" << std::setw(12) << GREEN << "S" << std::setw(18) << "Stack Test" << std::setw(10) << CYAN << "|\n";
 	std::cout << CYAN"|" << std::setw(12) << GREEN << "MM" << std::setw(17) << "Multimap Test" << std::setw(10) << CYAN << "|\n";
 	std::cout << CYAN"|" << std::setw(12) << GREEN << "ST" << std::setw(17) << "Set Test" << std::setw(10) << CYAN << "|\n";
+	std::cout << CYAN"|" << std::setw(12) << GREEN << "MS" << std::setw(17) << "Multiset Test" << std::setw(10) << CYAN << "|\n";
 	std::cout << CYAN"|___________________________|" << std::endl;
 }
 
@@ -76,6 +77,11 @@ int main()
 		else if (input == "ST")
 		{
 			testSet();
+			system("clear");
+		}
+		else if (input == "MS")
+		{
+			testMultiset();
 			system("clear");
 		}
 		else if(input == "EXIT")
